@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FaUsers, FaWifi, FaSuitcase, FaSnowflake, FaGlassMartiniAlt, FaMusic, FaChargingStation, FaLeaf, FaShieldAlt } from 'react-icons/fa';
+import { FaUsers, FaWifi, FaSuitcase, FaSnowflake, FaGlassMartiniAlt, FaMusic, FaChargingStation, FaLeaf } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 type Vehicle = {
   id: number;
@@ -102,10 +103,13 @@ export default function FleetGallery() {
                   onClick={() => setSelectedVehicle(vehicle.id)}
                 >
                   <div className="aspect-w-16 aspect-h-9 bg-gray-900">
-                    <img
+                    <Image
                       src={vehicle.image}
                       alt={vehicle.name}
-                      className="object-cover w-full h-full"
+                      className="object-cover"
+                      width={300}
+                      height={170}
+                      layout="responsive"
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { FaRoute, FaClock, FaCarSide } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
 
 type VehicleType = 'economy' | 'business' | 'luxury';
@@ -35,18 +35,18 @@ export default function PriceCalculator() {
   const [time, setTime] = useState<number>(0);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    calculatePrice();
-  }, [distance, vehicleType]);
-
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     const rate = RATES[vehicleType];
     const calculatedPrice = BASE_RATE[vehicleType] + (distance * rate.perKm);
     const travelTime = (distance / rate.speed) * 60; // in minutes
     
     setPrice(parseFloat(calculatedPrice.toFixed(2)));
     setTime(Math.round(travelTime));
-  };
+  }, [distance, vehicleType]);
+
+  useEffect(() => {
+    calculatePrice();
+  }, [calculatePrice]);
 
   const handleDistanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);

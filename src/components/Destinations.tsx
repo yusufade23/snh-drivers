@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { FaPlane, FaLandmark, FaClock, FaEuroSign, FaInfoCircle } from 'react-icons/fa';
+import { FaPlane, FaClock, FaInfoCircle } from 'react-icons/fa';
 
 const AIRPORT_SERVICES = [
   {
