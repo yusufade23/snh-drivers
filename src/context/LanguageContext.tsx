@@ -12,413 +12,364 @@ interface LanguageContextType {
 
 const translations = {
   nl: {
-    // Navigation
-    'nav.book': 'Boek Nu',
-    'nav.services': 'Diensten',
-    'nav.fleet': 'Vloot',
-    'nav.pricing': 'Prijzen',
-    'nav.emergency': 'Noodgeval',
-    'nav.join': 'Word Chauffeur',
-    
-    // Hero Section
-    'hero.title': 'SNH Drivers - Premium Taxi Service',
-    'hero.subtitle': 'Professionele, betrouwbare en comfortabele taxiservice 24/7 beschikbaar. Van luchthaven transfers tot stadsrondleidingen, wij zorgen voor u.',
-    'hero.book': 'Boek Uw Rit',
-    'hero.whatsapp': 'WhatsApp Direct',
-    'hero.emergency': 'Noodgeval: +31 20 123 4567',
-    'hero.emergency.title': 'Noodservice Beschikbaar',
-    'hero.emergency.subtitle': 'Directe hulp nodig? Bel onze noodlijn voor snelle reactie.',
-    'hero.features.24h': '24/7',
-    'hero.features.available': 'Beschikbaar',
-    'hero.features.response': 'Reactietijd',
-    'hero.features.licensed': 'Gelicenseerd',
-    'hero.features.rating': 'Beoordeling',
-    
-    // Booking Form
-    'booking.title': 'Boek Uw Taxi',
-    'booking.subtitle': 'Snelle en eenvoudige boeking - wij bevestigen uw rit binnen enkele minuten',
-    'booking.name': 'Naam',
-    'booking.email': 'E-mail',
-    'booking.phone': 'Telefoon',
-    'booking.pickup': 'Ophaaladres',
-    'booking.destination': 'Bestemming',
-    'booking.time': 'Ophaaltijd',
-    'booking.passengers': 'Passagiers',
-    'booking.vehicle': 'Voertuigtype',
-    'booking.requests': 'Speciale verzoeken',
-    'booking.submit': 'Boek Nu',
-    'booking.confirmation': 'Wij nemen binnen 5 minuten contact met u op om uw boeking te bevestigen',
-    'booking.contact': 'Directe hulp nodig? Bel ons:',
-    
-    // Services
-    'services.title': 'Onze Diensten',
-    'services.airport': 'Luchthaven Transfer',
-    'services.airport.desc': 'Betrouwbare transfers naar en van Schiphol en andere luchthavens',
-    'services.city': 'Stadsvervoer',
-    'services.city.desc': 'Snelle en comfortabele ritten door Amsterdam en omgeving',
-    'services.business': 'Zakelijk Vervoer',
-    'services.business.desc': 'Professioneel vervoer voor zakenreizen en evenementen',
-    'services.tour': 'Stadsrondleidingen',
-    'services.tour.desc': 'Ontdek Amsterdam met onze ervaren chauffeurs',
-    'services.motor': 'Motor Taxi Service',
-    'services.motor.desc': 'Snelle motor taxi service voor urgente ritten',
-    
-    // Emergency Service
-    'emergency.title': '24/7 Noodservice',
-    'emergency.subtitle': 'Wij zijn er altijd voor u, ook in noodgevallen',
-    'emergency.immediate': 'Directe Ophaal',
-    'emergency.immediate.desc': 'Noodgeval taxi service beschikbaar 24/7. Wij zijn er binnen 10-15 minuten.',
-    'emergency.medical': 'Medisch Vervoer',
-    'emergency.medical.desc': 'Professioneel medisch vervoer naar ziekenhuizen en klinieken.',
-    'emergency.airport': 'Luchthaven Noodgeval',
-    'emergency.airport.desc': 'Uw vlucht gemist? Wij brengen u zo snel mogelijk naar de luchthaven.',
-    'emergency.breakdown': 'Pechhulp',
-    'emergency.breakdown.desc': 'Uw auto heeft pech? Wij halen u op en brengen u waar u heen moet.',
-    
-    // Driver Services
-    'driver.title': 'Word Onze Chauffeur',
-    'driver.subtitle': 'Word onderdeel van Amsterdams beste taxiservice. Wij zoeken professionele, betrouwbare chauffeurs voor ons groeiende team.',
-    'driver.partnership': 'Chauffeur Partnership',
-    'driver.partnership.desc': 'Sluit aan bij ons netwerk van professionele chauffeurs. Wij bieden flexibele schema\'s en concurrerende verdiensten.',
-    'driver.training': 'Training & Certificering',
-    'driver.training.desc': 'Uitgebreid trainingsprogramma om ervoor te zorgen dat u aan alle wettelijke vereisten voldoet en uitstekende service biedt.',
-    'driver.insurance': 'Verzekering & Bescherming',
-    'driver.insurance.desc': 'Volledige verzekeringsdekking en juridische bescherming voor al onze chauffeurs.',
-    'driver.earnings': 'Verdiensten & Voordelen',
-    'driver.earnings.desc': 'Transparante verdienstenstructuur met bonussen en incentives voor kwaliteitsservice.',
-    'driver.scheduling': 'Flexibele Planning',
-    'driver.scheduling.desc': 'Werk wanneer u wilt - kies uw eigen uren en beschikbaarheid.',
-    'driver.support': 'Ondersteuningsnetwerk',
-    'driver.support.desc': '24/7 ondersteuning en gemeenschap van professionele chauffeurs om u te helpen slagen.',
-    
-    // Fleet
-    'fleet.title': 'Onze Vloot',
-    'fleet.subtitle': 'Moderne, comfortabele voertuigen voor elke reis',
-    'fleet.economy': 'Economie',
-    'fleet.business': 'Zakelijk',
-    'fleet.luxury': 'Luxe',
-    'fleet.van': 'Bus',
-    'fleet.motor': 'Motor',
-    
-    // Price Calculator
-    'calculator.title': 'Prijscalculator',
-    'calculator.subtitle': 'Schat de kosten van uw rit',
-    'calculator.distance': 'Afstand (km)',
-    'calculator.vehicle': 'Voertuigtype',
-    'calculator.calculate': 'Bereken Prijs',
-    'calculator.estimated': 'Geschatte prijs:',
-    
-    // Footer
-    'footer.contact': 'Contact',
-    'footer.phone': 'Telefoon',
-    'footer.email': 'E-mail',
-    'footer.address': 'Adres',
-    'footer.services': 'Diensten',
-    'footer.about': 'Over Ons',
-    'footer.privacy': 'Privacy',
-    'footer.terms': 'Voorwaarden',
-    'footer.copyright': '© 2024 SNH Drivers. Alle rechten voorbehouden.',
-    
-    // Admin Dashboard
-    'admin.title': 'Admin Dashboard',
-    'admin.pageviews': 'Paginaweergaven',
-    'admin.bookings': 'Boekingen',
-    'admin.revenue': 'Omzet',
-    'admin.visitors': 'Bezoekers',
-    'admin.today': 'Vandaag',
-    'admin.week': 'Deze Week',
-    'admin.month': 'Deze Maand',
-    'admin.total': 'Totaal',
-    'admin.average': 'Gemiddeld',
-    'admin.traffic': 'Verkeersbronnen',
-    'admin.routes': 'Populaire Routes',
-    'admin.recent': 'Recente Boekingen',
-    'admin.export': 'Exporteer Rapport',
-    
-    // Motor Taxi Specific
-    'motor.title': 'Motor Taxi Service',
-    'motor.subtitle': 'Snelle en efficiënte motor taxi service voor urgente ritten',
-    'motor.advantage': 'Waarom Motor Taxi?',
-    'motor.speed': 'Sneller dan auto\'s in druk verkeer',
-    'motor.flexibility': 'Flexibele routes en snelle doorstroming',
-    'motor.availability': '24/7 beschikbaarheid',
-    'motor.services': 'Onze Motor Diensten',
-    'motor.urgent': 'Urgente Ritten',
-    'motor.urgent.desc': 'Snelle ophaal voor urgente afspraken of noodgevallen',
-    'motor.business': 'Zakelijke Express',
-    'motor.business.desc': 'Snelle zakelijke transfers voor belangrijke vergaderingen',
-    'motor.delivery': 'Express Bezorging',
-    'motor.delivery.desc': 'Snelle bezorging van belangrijke documenten of pakketten',
-    'motor.tour': 'Motor Tours',
-    'motor.tour.desc': 'Unieke motor tours door Amsterdam en omgeving',
-    'motor.book': 'Boek Motor Taxi',
-    'motor.contact': 'Direct Motor Taxi Boeken',
+    nav: {
+      home: "Home",
+      services: "Diensten",
+      fleet: "Vloot",
+      contact: "Contact",
+      motor: "Motor Taxi"
+    },
+    hero: {
+      title: "TCN Taxi Centrale Nederland",
+      subtitle: "Reis in comfort, arriveer in stijl. TCN Taxi Centrale Nederland biedt premium taxi diensten in heel Nederland.",
+      button: {
+        book: "Boek Nu",
+        whatsapp: "WhatsApp Boeking"
+      }
+    },
+    booking: {
+      title: "Boek Uw Rit",
+      subtitle: "Vul het formulier in en we nemen binnen 15 minuten contact met u op",
+      name: "Naam",
+      email: "E-mail",
+      phone: "Telefoon",
+      pickup: "Ophaallocatie",
+      destination: "Bestemming",
+      date: "Datum",
+      time: "Tijd",
+      passengers: "Aantal passagiers",
+      message: "Extra informatie",
+      submit: "Boek Rit",
+      success: "Boeking succesvol verzonden! We nemen binnen 15 minuten contact met u op.",
+      error: "Er is een fout opgetreden. Probeer het opnieuw."
+    },
+    services: {
+      title: "Onze Diensten",
+      subtitle: "Professionele taxi diensten voor al uw vervoersbehoeften",
+      airport: {
+        title: "Luchthaven Transfer",
+        description: "Betrouwbare transfers naar en van alle Nederlandse luchthavens"
+      },
+      business: {
+        title: "Zakelijk Vervoer",
+        description: "Professioneel vervoer voor zakenreizen en vergaderingen"
+      },
+      private: {
+        title: "Privé Vervoer",
+        description: "Persoonlijke chauffeur service voor speciale gelegenheden"
+      },
+      area: {
+        title: "Heel Nederland",
+        description: "Service in heel Nederland en midden Nederland"
+      },
+      international: {
+        title: "Buitenlandse Reizen",
+        description: "Reizen naar het buitenland ook mogelijk"
+      },
+      wifi: {
+        title: "Geen WiFi",
+        description: "Let op: geen WiFi beschikbaar in de auto"
+      }
+    },
+    emergency: {
+      title: "24/7 Noodservice",
+      subtitle: "Altijd beschikbaar voor spoedgevallen",
+      description: "Onze spoedservice is 24 uur per dag, 7 dagen per week beschikbaar voor noodgevallen en late nachtelijke ritten.",
+      phone: "Bel Direct",
+      whatsapp: "WhatsApp Spoed"
+    },
+    driver: {
+      title: "Word Onze Chauffeur",
+      subtitle: "Join ons professionele team",
+      description: "We zijn altijd op zoek naar ervaren en betrouwbare chauffeurs. Geniet van flexibele werktijden en competitieve salarissen.",
+      benefits: [
+        "Flexibele werktijden",
+        "Competitief salaris",
+        "Professionele ondersteuning",
+        "Groeimogelijkheden"
+      ],
+      requirements: [
+        "Geldig rijbewijs",
+        "Schone achtergrond",
+        "Goede communicatieve vaardigheden",
+        "Professionele uitstraling"
+      ],
+      apply: "Solliciteer Nu"
+    },
+    fleet: {
+      title: "Onze Vloot",
+      subtitle: "Moderne en comfortabele voertuigen",
+      motor: "Motor Taxi",
+      luxury: "Luxe Sedan",
+      suv: "SUV",
+      van: "Van",
+      electric: "Elektrisch"
+    },
+    motor: {
+      title: "Motor Taxi Service",
+      subtitle: "Snelle en flexibele vervoersoplossing",
+      advantages: {
+        title: "Voordelen van Motor Taxi",
+        speed: "Snelle service",
+        flexibility: "Flexibele routes",
+        availability: "24/7 beschikbaar",
+        cost: "Voordelige prijzen"
+      },
+      services: {
+        title: "Onze Motor Taxi Diensten",
+        airport: "Luchthaven transfers",
+        business: "Zakelijk vervoer",
+        private: "Privé ritten",
+        emergency: "Spoedservice"
+      },
+      pricing: {
+        title: "Transparante Prijzen",
+        base: "Basis tarief",
+        perKm: "Per kilometer",
+        waiting: "Wachttijd",
+        booking: "Boek Nu"
+      }
+    }
   },
   en: {
-    // English translations (keeping existing ones)
-    'nav.book': 'Book Now',
-    'nav.services': 'Services',
-    'nav.fleet': 'Fleet',
-    'nav.pricing': 'Pricing',
-    'nav.emergency': 'Emergency',
-    'nav.join': 'Join Us',
-    
-    'hero.title': 'SNH Drivers - Premium Taxi Service',
-    'hero.subtitle': 'Professional, reliable, and comfortable taxi service available 24/7. From airport transfers to city tours, we\'ve got you covered.',
-    'hero.book': 'Book Your Ride',
-    'hero.whatsapp': 'WhatsApp Direct',
-    'hero.emergency': 'Emergency: +31 20 123 4567',
-    'hero.emergency.title': 'Emergency Service Available',
-    'hero.emergency.subtitle': 'Need immediate assistance? Call our emergency hotline for fast response.',
-    'hero.features.24h': '24/7',
-    'hero.features.available': 'Available',
-    'hero.features.response': 'Response Time',
-    'hero.features.licensed': 'Licensed',
-    'hero.features.rating': 'Rating',
-    
-    'booking.title': 'Book Your Taxi',
-    'booking.subtitle': 'Quick and easy booking - we\'ll confirm your ride within minutes',
-    'booking.name': 'Name',
-    'booking.email': 'Email',
-    'booking.phone': 'Phone',
-    'booking.pickup': 'Pickup Address',
-    'booking.destination': 'Destination',
-    'booking.time': 'Pickup Time',
-    'booking.passengers': 'Passengers',
-    'booking.vehicle': 'Vehicle Type',
-    'booking.requests': 'Special Requests',
-    'booking.submit': 'Book Now',
-    'booking.confirmation': 'We\'ll contact you within 5 minutes to confirm your booking',
-    'booking.contact': 'Need immediate assistance? Call us:',
-    
-    'services.title': 'Our Services',
-    'services.airport': 'Airport Transfer',
-    'services.airport.desc': 'Reliable transfers to and from Schiphol and other airports',
-    'services.city': 'City Transport',
-    'services.city.desc': 'Fast and comfortable rides through Amsterdam and surroundings',
-    'services.business': 'Business Transport',
-    'services.business.desc': 'Professional transport for business trips and events',
-    'services.tour': 'City Tours',
-    'services.tour.desc': 'Discover Amsterdam with our experienced drivers',
-    'services.motor': 'Motor Taxi Service',
-    'services.motor.desc': 'Fast motor taxi service for urgent rides',
-    
-    'emergency.title': '24/7 Emergency Service',
-    'emergency.subtitle': 'We are always there for you, even in emergencies',
-    'emergency.immediate': 'Immediate Pickup',
-    'emergency.immediate.desc': 'Emergency taxi service available 24/7. We\'ll be there within 10-15 minutes.',
-    'emergency.medical': 'Medical Transport',
-    'emergency.medical.desc': 'Professional medical transport to hospitals and clinics.',
-    'emergency.airport': 'Airport Emergency',
-    'emergency.airport.desc': 'Missed your flight? We\'ll get you to the airport as fast as possible.',
-    'emergency.breakdown': 'Breakdown Service',
-    'emergency.breakdown.desc': 'Your car broke down? We\'ll pick you up and take you where you need to go.',
-    
-    'driver.title': 'Join Our Driver Team',
-    'driver.subtitle': 'Become part of Amsterdam\'s premier taxi service. We\'re looking for professional, reliable drivers to join our growing team.',
-    'driver.partnership': 'Driver Partnership',
-    'driver.partnership.desc': 'Join our network of professional drivers. We offer flexible schedules and competitive earnings.',
-    'driver.training': 'Training & Certification',
-    'driver.training.desc': 'Comprehensive training program to ensure you meet all legal requirements and provide excellent service.',
-    'driver.insurance': 'Insurance & Protection',
-    'driver.insurance.desc': 'Full insurance coverage and legal protection for all our drivers.',
-    'driver.earnings': 'Earnings & Benefits',
-    'driver.earnings.desc': 'Transparent earnings structure with bonuses and incentives for quality service.',
-    'driver.scheduling': 'Flexible Scheduling',
-    'driver.scheduling.desc': 'Work when you want - choose your own hours and availability.',
-    'driver.support': 'Support Network',
-    'driver.support.desc': '24/7 support and community of professional drivers to help you succeed.',
-    
-    'fleet.title': 'Our Fleet',
-    'fleet.subtitle': 'Modern, comfortable vehicles for every journey',
-    'fleet.economy': 'Economy',
-    'fleet.business': 'Business',
-    'fleet.luxury': 'Luxury',
-    'fleet.van': 'Van',
-    'fleet.motor': 'Motor',
-    
-    'calculator.title': 'Price Calculator',
-    'calculator.subtitle': 'Estimate the cost of your ride',
-    'calculator.distance': 'Distance (km)',
-    'calculator.vehicle': 'Vehicle Type',
-    'calculator.calculate': 'Calculate Price',
-    'calculator.estimated': 'Estimated price:',
-    
-    'footer.contact': 'Contact',
-    'footer.phone': 'Phone',
-    'footer.email': 'Email',
-    'footer.address': 'Address',
-    'footer.services': 'Services',
-    'footer.about': 'About Us',
-    'footer.privacy': 'Privacy',
-    'footer.terms': 'Terms',
-    'footer.copyright': '© 2024 SNH Drivers. All rights reserved.',
-    
-    'admin.title': 'Admin Dashboard',
-    'admin.pageviews': 'Page Views',
-    'admin.bookings': 'Bookings',
-    'admin.revenue': 'Revenue',
-    'admin.visitors': 'Visitors',
-    'admin.today': 'Today',
-    'admin.week': 'This Week',
-    'admin.month': 'This Month',
-    'admin.total': 'Total',
-    'admin.average': 'Average',
-    'admin.traffic': 'Traffic Sources',
-    'admin.routes': 'Popular Routes',
-    'admin.recent': 'Recent Bookings',
-    'admin.export': 'Export Report',
-    
-    'motor.title': 'Motor Taxi Service',
-    'motor.subtitle': 'Fast and efficient motor taxi service for urgent rides',
-    'motor.advantage': 'Why Motor Taxi?',
-    'motor.speed': 'Faster than cars in heavy traffic',
-    'motor.flexibility': 'Flexible routes and quick navigation',
-    'motor.availability': '24/7 availability',
-    'motor.services': 'Our Motor Services',
-    'motor.urgent': 'Urgent Rides',
-    'motor.urgent.desc': 'Quick pickup for urgent appointments or emergencies',
-    'motor.business': 'Business Express',
-    'motor.business.desc': 'Fast business transfers for important meetings',
-    'motor.delivery': 'Express Delivery',
-    'motor.delivery.desc': 'Quick delivery of important documents or packages',
-    'motor.tour': 'Motor Tours',
-    'motor.tour.desc': 'Unique motor tours through Amsterdam and surroundings',
-    'motor.book': 'Book Motor Taxi',
-    'motor.contact': 'Direct Motor Taxi Booking',
+    nav: {
+      home: "Home",
+      services: "Services",
+      fleet: "Fleet",
+      contact: "Contact",
+      motor: "Motor Taxi"
+    },
+    hero: {
+      title: "TCN Taxi Centrale Nederland",
+      subtitle: "Travel in comfort, arrive in style. TCN Taxi Centrale Nederland offers premium taxi services across the Netherlands.",
+      button: {
+        book: "Book Now",
+        whatsapp: "WhatsApp Booking"
+      }
+    },
+    booking: {
+      title: "Book Your Ride",
+      subtitle: "Fill out the form and we'll contact you within 15 minutes",
+      name: "Name",
+      email: "Email",
+      phone: "Phone",
+      pickup: "Pickup Location",
+      destination: "Destination",
+      date: "Date",
+      time: "Time",
+      passengers: "Number of passengers",
+      message: "Additional information",
+      submit: "Book Ride",
+      success: "Booking successfully sent! We'll contact you within 15 minutes.",
+      error: "An error occurred. Please try again."
+    },
+    services: {
+      title: "Our Services",
+      subtitle: "Professional taxi services for all your transportation needs",
+      airport: {
+        title: "Airport Transfer",
+        description: "Reliable transfers to and from all Dutch airports"
+      },
+      business: {
+        title: "Business Transport",
+        description: "Professional transport for business trips and meetings"
+      },
+      private: {
+        title: "Private Transport",
+        description: "Personal chauffeur service for special occasions"
+      },
+      area: {
+        title: "All Netherlands",
+        description: "Service throughout the Netherlands and central Netherlands"
+      },
+      international: {
+        title: "International Travel",
+        description: "Travel to foreign countries also possible"
+      },
+      wifi: {
+        title: "No WiFi",
+        description: "Note: no WiFi available in the car"
+      }
+    },
+    emergency: {
+      title: "24/7 Emergency Service",
+      subtitle: "Always available for emergencies",
+      description: "Our emergency service is available 24 hours a day, 7 days a week for emergencies and late night rides.",
+      phone: "Call Now",
+      whatsapp: "WhatsApp Emergency"
+    },
+    driver: {
+      title: "Become Our Driver",
+      subtitle: "Join our professional team",
+      description: "We are always looking for experienced and reliable drivers. Enjoy flexible working hours and competitive salaries.",
+      benefits: [
+        "Flexible working hours",
+        "Competitive salary",
+        "Professional support",
+        "Growth opportunities"
+      ],
+      requirements: [
+        "Valid driver's license",
+        "Clean background",
+        "Good communication skills",
+        "Professional appearance"
+      ],
+      apply: "Apply Now"
+    },
+    fleet: {
+      title: "Our Fleet",
+      subtitle: "Modern and comfortable vehicles",
+      motor: "Motor Taxi",
+      luxury: "Luxury Sedan",
+      suv: "SUV",
+      van: "Van",
+      electric: "Electric"
+    },
+    motor: {
+      title: "Motor Taxi Service",
+      subtitle: "Fast and flexible transportation solution",
+      advantages: {
+        title: "Motor Taxi Advantages",
+        speed: "Fast service",
+        flexibility: "Flexible routes",
+        availability: "24/7 available",
+        cost: "Affordable prices"
+      },
+      services: {
+        title: "Our Motor Taxi Services",
+        airport: "Airport transfers",
+        business: "Business transport",
+        private: "Private rides",
+        emergency: "Emergency service"
+      },
+      pricing: {
+        title: "Transparent Pricing",
+        base: "Base rate",
+        perKm: "Per kilometer",
+        waiting: "Waiting time",
+        booking: "Book Now"
+      }
+    }
   },
   de: {
-    // German translations (keeping existing ones)
-    'nav.book': 'Jetzt Buchen',
-    'nav.services': 'Dienstleistungen',
-    'nav.fleet': 'Flotte',
-    'nav.pricing': 'Preise',
-    'nav.emergency': 'Notfall',
-    'nav.join': 'Fahrer Werden',
-    
-    'hero.title': 'SNH Drivers - Premium Taxi Service',
-    'hero.subtitle': 'Professioneller, zuverlässiger und komfortabler Taxiservice 24/7 verfügbar. Vom Flughafentransfer bis zu Stadtrundfahrten, wir sind für Sie da.',
-    'hero.book': 'Fahrt Buchen',
-    'hero.whatsapp': 'WhatsApp Direkt',
-    'hero.emergency': 'Notfall: +31 20 123 4567',
-    'hero.emergency.title': 'Notfallservice Verfügbar',
-    'hero.emergency.subtitle': 'Sofortige Hilfe benötigt? Rufen Sie unsere Notfallhotline für schnelle Reaktion.',
-    'hero.features.24h': '24/7',
-    'hero.features.available': 'Verfügbar',
-    'hero.features.response': 'Reaktionszeit',
-    'hero.features.licensed': 'Lizenziert',
-    'hero.features.rating': 'Bewertung',
-    
-    'booking.title': 'Taxi Buchen',
-    'booking.subtitle': 'Schnelle und einfache Buchung - wir bestätigen Ihre Fahrt innerhalb von Minuten',
-    'booking.name': 'Name',
-    'booking.email': 'E-Mail',
-    'booking.phone': 'Telefon',
-    'booking.pickup': 'Abholadresse',
-    'booking.destination': 'Ziel',
-    'booking.time': 'Abholzeit',
-    'booking.passengers': 'Passagiere',
-    'booking.vehicle': 'Fahrzeugtyp',
-    'booking.requests': 'Besondere Wünsche',
-    'booking.submit': 'Jetzt Buchen',
-    'booking.confirmation': 'Wir kontaktieren Sie innerhalb von 5 Minuten zur Bestätigung Ihrer Buchung',
-    'booking.contact': 'Sofortige Hilfe benötigt? Rufen Sie uns an:',
-    
-    'services.title': 'Unsere Dienstleistungen',
-    'services.airport': 'Flughafentransfer',
-    'services.airport.desc': 'Zuverlässige Transfers zu und von Schiphol und anderen Flughäfen',
-    'services.city': 'Stadtverkehr',
-    'services.city.desc': 'Schnelle und komfortable Fahrten durch Amsterdam und Umgebung',
-    'services.business': 'Geschäftsverkehr',
-    'services.business.desc': 'Professioneller Transport für Geschäftsreisen und Events',
-    'services.tour': 'Stadtrundfahrten',
-    'services.tour.desc': 'Entdecken Sie Amsterdam mit unseren erfahrenen Fahrern',
-    'services.motor': 'Motor Taxi Service',
-    'services.motor.desc': 'Schneller Motor Taxi Service für dringende Fahrten',
-    
-    'emergency.title': '24/7 Notfallservice',
-    'emergency.subtitle': 'Wir sind immer für Sie da, auch in Notfällen',
-    'emergency.immediate': 'Sofortige Abholung',
-    'emergency.immediate.desc': 'Notfall Taxiservice 24/7 verfügbar. Wir sind innerhalb von 10-15 Minuten da.',
-    'emergency.medical': 'Medizinischer Transport',
-    'emergency.medical.desc': 'Professioneller medizinischer Transport zu Krankenhäusern und Kliniken.',
-    'emergency.airport': 'Flughafen Notfall',
-    'emergency.airport.desc': 'Flug verpasst? Wir bringen Sie so schnell wie möglich zum Flughafen.',
-    'emergency.breakdown': 'Pannenhilfe',
-    'emergency.breakdown.desc': 'Ihr Auto hat eine Panne? Wir holen Sie ab und bringen Sie wohin Sie müssen.',
-    
-    'driver.title': 'Werden Sie Teil Unseres Fahrerteams',
-    'driver.subtitle': 'Werden Sie Teil von Amsterdams erstklassigem Taxiservice. Wir suchen professionelle, zuverlässige Fahrer für unser wachsendes Team.',
-    'driver.partnership': 'Fahrer Partnership',
-    'driver.partnership.desc': 'Schließen Sie sich unserem Netzwerk professioneller Fahrer an. Wir bieten flexible Zeitpläne und wettbewerbsfähige Verdienste.',
-    'driver.training': 'Training & Zertifizierung',
-    'driver.training.desc': 'Umfassendes Trainingsprogramm um sicherzustellen, dass Sie alle rechtlichen Anforderungen erfüllen und ausgezeichneten Service bieten.',
-    'driver.insurance': 'Versicherung & Schutz',
-    'driver.insurance.desc': 'Vollständige Versicherungsabdeckung und rechtlicher Schutz für alle unsere Fahrer.',
-    'driver.earnings': 'Verdienste & Vorteile',
-    'driver.earnings.desc': 'Transparente Verdienststruktur mit Boni und Anreizen für Qualitätsservice.',
-    'driver.scheduling': 'Flexible Planung',
-    'driver.scheduling.desc': 'Arbeiten Sie wann Sie wollen - wählen Sie Ihre eigenen Stunden und Verfügbarkeit.',
-    'driver.support': 'Unterstützungsnetzwerk',
-    'driver.support.desc': '24/7 Unterstützung und Gemeinschaft professioneller Fahrer um Ihnen zum Erfolg zu verhelfen.',
-    
-    'fleet.title': 'Unsere Flotte',
-    'fleet.subtitle': 'Moderne, komfortable Fahrzeuge für jede Reise',
-    'fleet.economy': 'Economy',
-    'fleet.business': 'Business',
-    'fleet.luxury': 'Luxus',
-    'fleet.van': 'Van',
-    'fleet.motor': 'Motor',
-    
-    'calculator.title': 'Preisrechner',
-    'calculator.subtitle': 'Schätzen Sie die Kosten Ihrer Fahrt',
-    'calculator.distance': 'Entfernung (km)',
-    'calculator.vehicle': 'Fahrzeugtyp',
-    'calculator.calculate': 'Preis Berechnen',
-    'calculator.estimated': 'Geschätzter Preis:',
-    
-    'footer.contact': 'Kontakt',
-    'footer.phone': 'Telefon',
-    'footer.email': 'E-Mail',
-    'footer.address': 'Adresse',
-    'footer.services': 'Dienstleistungen',
-    'footer.about': 'Über Uns',
-    'footer.privacy': 'Datenschutz',
-    'footer.terms': 'Bedingungen',
-    'footer.copyright': '© 2024 SNH Drivers. Alle Rechte vorbehalten.',
-    
-    'admin.title': 'Admin Dashboard',
-    'admin.pageviews': 'Seitenaufrufe',
-    'admin.bookings': 'Buchungen',
-    'admin.revenue': 'Umsatz',
-    'admin.visitors': 'Besucher',
-    'admin.today': 'Heute',
-    'admin.week': 'Diese Woche',
-    'admin.month': 'Dieser Monat',
-    'admin.total': 'Gesamt',
-    'admin.average': 'Durchschnitt',
-    'admin.traffic': 'Verkehrsquellen',
-    'admin.routes': 'Beliebte Routen',
-    'admin.recent': 'Aktuelle Buchungen',
-    'admin.export': 'Bericht Exportieren',
-    
-    'motor.title': 'Motor Taxi Service',
-    'motor.subtitle': 'Schneller und effizienter Motor Taxi Service für dringende Fahrten',
-    'motor.advantage': 'Warum Motor Taxi?',
-    'motor.speed': 'Schneller als Autos im dichten Verkehr',
-    'motor.flexibility': 'Flexible Routen und schnelle Navigation',
-    'motor.availability': '24/7 Verfügbarkeit',
-    'motor.services': 'Unsere Motor Dienstleistungen',
-    'motor.urgent': 'Dringende Fahrten',
-    'motor.urgent.desc': 'Schnelle Abholung für dringende Termine oder Notfälle',
-    'motor.business': 'Business Express',
-    'motor.business.desc': 'Schnelle Geschäftstransfers für wichtige Meetings',
-    'motor.delivery': 'Express Lieferung',
-    'motor.delivery.desc': 'Schnelle Lieferung wichtiger Dokumente oder Pakete',
-    'motor.tour': 'Motor Touren',
-    'motor.tour.desc': 'Einzigartige Motor Touren durch Amsterdam und Umgebung',
-    'motor.book': 'Motor Taxi Buchen',
-    'motor.contact': 'Direkte Motor Taxi Buchung',
+    nav: {
+      home: "Startseite",
+      services: "Dienstleistungen",
+      fleet: "Flotte",
+      contact: "Kontakt",
+      motor: "Motor Taxi"
+    },
+    hero: {
+      title: "TCN Taxi Centrale Nederland",
+      subtitle: "Reisen Sie komfortabel, kommen Sie stilvoll an. TCN Taxi Centrale Nederland bietet Premium-Taxi-Dienste in den gesamten Niederlanden.",
+      button: {
+        book: "Jetzt Buchen",
+        whatsapp: "WhatsApp Buchung"
+      }
+    },
+    booking: {
+      title: "Buchen Sie Ihre Fahrt",
+      subtitle: "Füllen Sie das Formular aus und wir kontaktieren Sie innerhalb von 15 Minuten",
+      name: "Name",
+      email: "E-Mail",
+      phone: "Telefon",
+      pickup: "Abholort",
+      destination: "Ziel",
+      date: "Datum",
+      time: "Zeit",
+      passengers: "Anzahl der Passagiere",
+      message: "Zusätzliche Informationen",
+      submit: "Fahrt Buchen",
+      success: "Buchung erfolgreich gesendet! Wir kontaktieren Sie innerhalb von 15 Minuten.",
+      error: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    services: {
+      title: "Unsere Dienstleistungen",
+      subtitle: "Professionelle Taxi-Dienste für alle Ihre Transportbedürfnisse",
+      airport: {
+        title: "Flughafen Transfer",
+        description: "Zuverlässige Transfers zu und von allen niederländischen Flughäfen"
+      },
+      business: {
+        title: "Geschäftstransport",
+        description: "Professioneller Transport für Geschäftsreisen und Meetings"
+      },
+      private: {
+        title: "Privat Transport",
+        description: "Persönlicher Chauffeur-Service für besondere Anlässe"
+      },
+      area: {
+        title: "Ganze Niederlande",
+        description: "Service in den gesamten Niederlanden und Zentralniederlande"
+      },
+      international: {
+        title: "Internationale Reisen",
+        description: "Reisen ins Ausland ebenfalls möglich"
+      },
+      wifi: {
+        title: "Kein WiFi",
+        description: "Hinweis: kein WiFi im Auto verfügbar"
+      }
+    },
+    emergency: {
+      title: "24/7 Notdienst",
+      subtitle: "Immer verfügbar für Notfälle",
+      description: "Unser Notdienst ist 24 Stunden am Tag, 7 Tage die Woche für Notfälle und späte Nachtfahrten verfügbar.",
+      phone: "Jetzt Anrufen",
+      whatsapp: "WhatsApp Notfall"
+    },
+    driver: {
+      title: "Werden Sie Unser Fahrer",
+      subtitle: "Schließen Sie sich unserem professionellen Team an",
+      description: "Wir suchen immer erfahrene und zuverlässige Fahrer. Genießen Sie flexible Arbeitszeiten und wettbewerbsfähige Gehälter.",
+      benefits: [
+        "Flexible Arbeitszeiten",
+        "Wettbewerbsfähiges Gehalt",
+        "Professionelle Unterstützung",
+        "Wachstumsmöglichkeiten"
+      ],
+      requirements: [
+        "Gültiger Führerschein",
+        "Sauberer Hintergrund",
+        "Gute Kommunikationsfähigkeiten",
+        "Professionelles Auftreten"
+      ],
+      apply: "Jetzt Bewerben"
+    },
+    fleet: {
+      title: "Unsere Flotte",
+      subtitle: "Moderne und komfortable Fahrzeuge",
+      motor: "Motor Taxi",
+      luxury: "Luxus Limousine",
+      suv: "SUV",
+      van: "Van",
+      electric: "Elektrisch"
+    },
+    motor: {
+      title: "Motor Taxi Service",
+      subtitle: "Schnelle und flexible Transportlösung",
+      advantages: {
+        title: "Motor Taxi Vorteile",
+        speed: "Schneller Service",
+        flexibility: "Flexible Routen",
+        availability: "24/7 verfügbar",
+        cost: "Günstige Preise"
+      },
+      services: {
+        title: "Unsere Motor Taxi Dienstleistungen",
+        airport: "Flughafen Transfers",
+        business: "Geschäftstransport",
+        private: "Private Fahrten",
+        emergency: "Notdienst"
+      },
+      pricing: {
+        title: "Transparente Preise",
+        base: "Grundtarif",
+        perKm: "Pro Kilometer",
+        waiting: "Wartezeit",
+        booking: "Jetzt Buchen"
+      }
+    }
   }
 };
 
@@ -428,7 +379,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('nl'); // Default to Dutch
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+    const keys = key.split('.');
+    let value: unknown = translations[language];
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = (value as Record<string, unknown>)[k];
+      } else {
+        return key; // Return the key if not found
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   return (

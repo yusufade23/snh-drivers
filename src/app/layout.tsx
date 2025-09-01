@@ -8,8 +8,8 @@ import { Analytics } from '@vercel/analytics/next';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SNH Drivers - Premium Taxi Service",
-  description: "Boek uw premium taxi rit met SNH Drivers. Reis in comfort, arriveer in stijl.",
+  title: "TCN Taxi Centrale Nederland - Premium Taxi Service",
+  description: "Boek uw premium taxi rit met TCN Taxi Centrale Nederland. Reis in comfort, arriveer in stijl.",
 };
 
 export default function RootLayout({

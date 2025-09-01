@@ -1,101 +1,98 @@
 "use client";
 
-import { FaFacebook, FaInstagram, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { useLanguage } from '@/context/LanguageContext';
+import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
-export default function Footer() {
-  const { t } = useLanguage();
-  
-  const currentYear = new Date().getFullYear();
-
+const Footer = () => {
   return (
-    <footer className="bg-gray-950 text-gray-300">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">SNH Drivers</h3>
-            <p className="mb-4 text-gray-400">{t('footer.tagline')}</p>
+          <div className="col-span-1 md:col-span-2">
+            <h3 className="text-2xl font-bold text-yellow-500 mb-4">
+              TCN Taxi Centrale Nederland
+            </h3>
+            <p className="text-gray-300 mb-4">
+              Professionele taxi diensten in heel Nederland. 24/7 beschikbaar voor al uw vervoersbehoeften.
+            </p>
             <div className="flex space-x-4">
-              <motion.a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                whileHover={{ y: -3, color: "#ffffff" }}
-                className="text-gray-400 hover:text-white text-xl"
+              <a
+                href="tel:+31612345678"
+                className="text-gray-300 hover:text-yellow-500 transition-colors"
               >
-                <FaFacebook />
-              </motion.a>
-              <motion.a 
-                href="https://instagram.com" 
-                target="_blank" 
+                <FaPhone className="text-xl" />
+              </a>
+              <a
+                href="https://wa.me/31612345678"
+                target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -3, color: "#ffffff" }}
-                className="text-gray-400 hover:text-white text-xl"
+                className="text-gray-300 hover:text-green-500 transition-colors"
               >
-                <FaInstagram />
-              </motion.a>
+                <FaWhatsapp className="text-xl" />
+              </a>
+              <a
+                href="mailto:info@tcn-taxi.nl"
+                className="text-gray-300 hover:text-yellow-500 transition-colors"
+              >
+                <FaEnvelope className="text-xl" />
+              </a>
             </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">{t('footer.contact')}</h3>
-            <ul className="space-y-3 text-gray-400">
-              <li className="flex items-center">
-                <FaMapMarkerAlt className="mr-2 text-yellow-500" />
-                Amstelveen, Amsterdam
-              </li>
-              <li className="flex items-center">
-                <FaPhone className="mr-2 text-yellow-500" />
-                <a href="tel:+31201234567" className="hover:text-white">+31 20 123 4567</a>
-              </li>
-              <li className="flex items-center">
-                <FaEnvelope className="mr-2 text-yellow-500" />
-                <a href="mailto:info@snhdrivers.nl" className="hover:text-white">info@snhdrivers.nl</a>
-              </li>
-            </ul>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">{t('footer.links')}</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h4 className="text-lg font-semibold mb-4">Snelle Links</h4>
+            <ul className="space-y-2">
               <li>
-                <Link href="#booking" className="hover:text-white transition-colors">
-                  {t('footer.book')}
-                </Link>
+                <a href="#services" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Diensten
+                </a>
               </li>
               <li>
-                <Link href="#services" className="hover:text-white transition-colors">
-                  {t('footer.services')}
-                </Link>
+                <a href="#fleet" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Vloot
+                </a>
               </li>
               <li>
-                <Link href="#business" className="hover:text-white transition-colors">
-                  {t('footer.business')}
-                </Link>
+                <a href="/motor" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Motor Taxi
+                </a>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-white transition-colors">
-                  {t('footer.privacy')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-white transition-colors">
-                  {t('footer.terms')}
-                </Link>
+                <a href="#booking" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Boeken
+                </a>
               </li>
             </ul>
           </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Contact</h4>
+            <div className="space-y-2 text-gray-300">
+              <div className="flex items-center">
+                <FaPhone className="mr-2 text-yellow-500" />
+                <span>+31 6 12345678</span>
+              </div>
+              <div className="flex items-center">
+                <FaEnvelope className="mr-2 text-yellow-500" />
+                <span>info@tcn-taxi.nl</span>
+              </div>
+              <div className="flex items-center">
+                <FaMapMarkerAlt className="mr-2 text-yellow-500" />
+                <span>Heel Nederland</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-gray-500 text-center">
-          <p>© {currentYear} SNH Drivers. {t('footer.rights')}</p>
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 TCN Taxi Centrale Nederland. Alle rechten voorbehouden.</p>
         </div>
       </div>
     </footer>
   );
-} 
+};
+
+export default Footer; 
