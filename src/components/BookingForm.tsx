@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { FaMapMarkerAlt, FaClock, FaUser, FaCar, FaEnvelope, FaPhone } from 'react-icons/fa';
-// import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 import toast from 'react-hot-toast';
 
 const bookingSchema = z.object({
@@ -25,7 +25,7 @@ type BookingFormData = z.infer<typeof bookingSchema>;
 
 export default function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const { t } = useLanguage();
+  const { t } = useLanguage();
 
   const {
     register,
@@ -98,9 +98,9 @@ export default function BookingForm() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Book Your Taxi</h2>
+          <h2 className="text-3xl font-bold mb-4">{t('booking.title')}</h2>
           <p className="text-gray-400 text-lg">
-            Quick and easy booking - we&apos;ll confirm your ride within minutes
+            {t('booking.subtitle')}
           </p>
         </motion.div>
 

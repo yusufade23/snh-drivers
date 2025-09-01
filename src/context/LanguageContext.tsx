@@ -1,370 +1,434 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-// Define available languages
-export type LanguageCode = 'nl' | 'en' | 'de';
-
-// Define interface for translation parameters
-interface TranslationParams {
-  [key: string]: string | number;
-}
+type Language = 'nl' | 'en' | 'de';
 
 interface LanguageContextType {
-  language: LanguageCode;
-  setLanguage: (code: LanguageCode) => void;
-  t: (key: string, params?: TranslationParams) => string;
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
 }
 
-// Create the context
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-// Translation dictionaries
-const translations: Record<LanguageCode, Record<string, string>> = {
+const translations = {
   nl: {
-    // Hero section
-    'hero.title': 'Reis in Comfort, Arriveer in Stijl',
-    'hero.subtitle': 'Ervaar luxe vervoer op zijn best met SNH Drivers',
-    'hero.button.book': 'Boek een Rit',
-    'hero.button.whatsapp': 'WhatsApp Direct',
+    // Navigation
+    'nav.book': 'Boek Nu',
+    'nav.services': 'Diensten',
+    'nav.fleet': 'Vloot',
+    'nav.pricing': 'Prijzen',
+    'nav.emergency': 'Noodgeval',
+    'nav.join': 'Word Chauffeur',
     
-    // Booking form
-    'booking.title': 'Boek Uw Rit',
+    // Hero Section
+    'hero.title': 'SNH Drivers - Premium Taxi Service',
+    'hero.subtitle': 'Professionele, betrouwbare en comfortabele taxiservice 24/7 beschikbaar. Van luchthaven transfers tot stadsrondleidingen, wij zorgen voor u.',
+    'hero.book': 'Boek Uw Rit',
+    'hero.whatsapp': 'WhatsApp Direct',
+    'hero.emergency': 'Noodgeval: +31 20 123 4567',
+    'hero.emergency.title': 'Noodservice Beschikbaar',
+    'hero.emergency.subtitle': 'Directe hulp nodig? Bel onze noodlijn voor snelle reactie.',
+    'hero.features.24h': '24/7',
+    'hero.features.available': 'Beschikbaar',
+    'hero.features.response': 'Reactietijd',
+    'hero.features.licensed': 'Gelicenseerd',
+    'hero.features.rating': 'Beoordeling',
+    
+    // Booking Form
+    'booking.title': 'Boek Uw Taxi',
+    'booking.subtitle': 'Snelle en eenvoudige boeking - wij bevestigen uw rit binnen enkele minuten',
     'booking.name': 'Naam',
-    'booking.phone': 'Telefoonnummer',
-    'booking.pickup': 'Ophaallocatie',
-    'booking.dropoff': 'Bestemming',
-    'booking.datetime': 'Datum & Tijd',
-    'booking.button': 'Nu Boeken',
+    'booking.email': 'E-mail',
+    'booking.phone': 'Telefoon',
+    'booking.pickup': 'Ophaaladres',
+    'booking.destination': 'Bestemming',
+    'booking.time': 'Ophaaltijd',
+    'booking.passengers': 'Passagiers',
+    'booking.vehicle': 'Voertuigtype',
+    'booking.requests': 'Speciale verzoeken',
+    'booking.submit': 'Boek Nu',
+    'booking.confirmation': 'Wij nemen binnen 5 minuten contact met u op om uw boeking te bevestigen',
+    'booking.contact': 'Directe hulp nodig? Bel ons:',
     
     // Services
     'services.title': 'Onze Diensten',
-    'services.economy.title': 'Economisch',
-    'services.economy.description': 'Betaalbaar en betrouwbaar vervoer voor uw dagelijkse ritten',
-    'services.business.title': 'Business',
-    'services.business.description': 'Premium comfort voor zakelijke professionals',
-    'services.luxury.title': 'Luxe',
-    'services.luxury.description': 'Eersteklas ervaring met topklasse voertuigen',
+    'services.airport': 'Luchthaven Transfer',
+    'services.airport.desc': 'Betrouwbare transfers naar en van Schiphol en andere luchthavens',
+    'services.city': 'Stadsvervoer',
+    'services.city.desc': 'Snelle en comfortabele ritten door Amsterdam en omgeving',
+    'services.business': 'Zakelijk Vervoer',
+    'services.business.desc': 'Professioneel vervoer voor zakenreizen en evenementen',
+    'services.tour': 'Stadsrondleidingen',
+    'services.tour.desc': 'Ontdek Amsterdam met onze ervaren chauffeurs',
+    'services.motor': 'Motor Taxi Service',
+    'services.motor.desc': 'Snelle motor taxi service voor urgente ritten',
     
-    // Airport transfers
-    'airport.title': 'Schiphol Airport Transfer',
-    'airport.subtitle': 'Comfortabele en betrouwbare luchthaventransfers',
+    // Emergency Service
+    'emergency.title': '24/7 Noodservice',
+    'emergency.subtitle': 'Wij zijn er altijd voor u, ook in noodgevallen',
+    'emergency.immediate': 'Directe Ophaal',
+    'emergency.immediate.desc': 'Noodgeval taxi service beschikbaar 24/7. Wij zijn er binnen 10-15 minuten.',
+    'emergency.medical': 'Medisch Vervoer',
+    'emergency.medical.desc': 'Professioneel medisch vervoer naar ziekenhuizen en klinieken.',
+    'emergency.airport': 'Luchthaven Noodgeval',
+    'emergency.airport.desc': 'Uw vlucht gemist? Wij brengen u zo snel mogelijk naar de luchthaven.',
+    'emergency.breakdown': 'Pechhulp',
+    'emergency.breakdown.desc': 'Uw auto heeft pech? Wij halen u op en brengen u waar u heen moet.',
     
-    // Destinations
-    'destinations.title': 'Toeristische Bestemmingen',
-    'destinations.subtitle': 'Ontdek de mooiste plekken rond Amsterdam',
-    
-    // Business travel
-    'business.title': 'Zakelijk Vervoer',
-    'business.subtitle': 'Premium taxidiensten voor uw bedrijf in Amsterdam en omgeving',
-    'business.tab.services': 'Diensten',
-    'business.tab.districts': 'Zakelijke Districten',
-    'business.tab.contact': 'Zakelijke Offerte',
+    // Driver Services
+    'driver.title': 'Word Onze Chauffeur',
+    'driver.subtitle': 'Word onderdeel van Amsterdams beste taxiservice. Wij zoeken professionele, betrouwbare chauffeurs voor ons groeiende team.',
+    'driver.partnership': 'Chauffeur Partnership',
+    'driver.partnership.desc': 'Sluit aan bij ons netwerk van professionele chauffeurs. Wij bieden flexibele schema\'s en concurrerende verdiensten.',
+    'driver.training': 'Training & Certificering',
+    'driver.training.desc': 'Uitgebreid trainingsprogramma om ervoor te zorgen dat u aan alle wettelijke vereisten voldoet en uitstekende service biedt.',
+    'driver.insurance': 'Verzekering & Bescherming',
+    'driver.insurance.desc': 'Volledige verzekeringsdekking en juridische bescherming voor al onze chauffeurs.',
+    'driver.earnings': 'Verdiensten & Voordelen',
+    'driver.earnings.desc': 'Transparante verdienstenstructuur met bonussen en incentives voor kwaliteitsservice.',
+    'driver.scheduling': 'Flexibele Planning',
+    'driver.scheduling.desc': 'Werk wanneer u wilt - kies uw eigen uren en beschikbaarheid.',
+    'driver.support': 'Ondersteuningsnetwerk',
+    'driver.support.desc': '24/7 ondersteuning en gemeenschap van professionele chauffeurs om u te helpen slagen.',
     
     // Fleet
-    'fleet.title': 'Onze Voertuigen',
-    'fleet.business': 'Business',
+    'fleet.title': 'Onze Vloot',
+    'fleet.subtitle': 'Moderne, comfortabele voertuigen voor elke reis',
+    'fleet.economy': 'Economie',
+    'fleet.business': 'Zakelijk',
     'fleet.luxury': 'Luxe',
-    'fleet.eco': 'Eco',
-    'fleet.features.passengers': '{count} Passagiers',
-    'fleet.features.luggage': '{count} Stuks Bagage',
-    'fleet.features.comfort': 'Klimaatcontrole',
-    'fleet.features.wifi': 'Gratis Wi-Fi',
-    'fleet.features.leather': 'Lederen Interieur',
-    'fleet.features.panoramic': 'Panoramadak',
-    'fleet.features.drinks': 'Verfrissingen',
-    'fleet.features.electric': '100% Elektrisch',
-    'fleet.features.autopilot': 'Autopilot',
-    'fleet.button': 'Reserveer Dit Voertuig',
+    'fleet.van': 'Bus',
+    'fleet.motor': 'Motor',
     
-    // Calculator
-    'calculator.title': 'Bereken Uw Ritprijs',
-    'calculator.distance': 'Geschatte Afstand (km)',
-    'calculator.vehicle': 'Type Voertuig',
-    'calculator.estimate': 'Geschatte Kosten',
-    'calculator.price': 'Verwachte Prijs',
-    'calculator.time': 'Reistijd',
-    'calculator.minutes': 'min',
-    'calculator.disclaimer': 'Prijzen zijn indicatief. Exacte tarieven kunnen variëren op basis van verkeer, wachttijd en andere factoren.',
-    'calculator.book': 'Boek Tegen Dit Tarief',
-    
-    // Contact
-    'contact.call': 'Bel direct',
-    'contact.whatsapp': 'WhatsApp',
-    'contact.toggle': 'Contact opties',
-    
-    // Cookie Consent
-    'cookies.message': 'Wij gebruiken cookies om uw ervaring op onze website te verbeteren. Door gebruik te maken van onze website gaat u akkoord met ons privacybeleid.',
-    'cookies.privacy': 'Privacybeleid',
-    'cookies.accept': 'Accepteren',
+    // Price Calculator
+    'calculator.title': 'Prijscalculator',
+    'calculator.subtitle': 'Schat de kosten van uw rit',
+    'calculator.distance': 'Afstand (km)',
+    'calculator.vehicle': 'Voertuigtype',
+    'calculator.calculate': 'Bereken Prijs',
+    'calculator.estimated': 'Geschatte prijs:',
     
     // Footer
-    'footer.tagline': 'Ervaar luxe vervoer op zijn best. 24/7 beschikbaar voor uw comfort en gemak.',
     'footer.contact': 'Contact',
-    'footer.links': 'Snelle Links',
-    'footer.book': 'Boek een Rit',
-    'footer.services': 'Onze Diensten',
-    'footer.business': 'Zakelijk Vervoer',
-    'footer.privacy': 'Privacybeleid',
-    'footer.terms': 'Algemene Voorwaarden',
-    'footer.rights': 'Alle rechten voorbehouden',
+    'footer.phone': 'Telefoon',
+    'footer.email': 'E-mail',
+    'footer.address': 'Adres',
+    'footer.services': 'Diensten',
+    'footer.about': 'Over Ons',
+    'footer.privacy': 'Privacy',
+    'footer.terms': 'Voorwaarden',
+    'footer.copyright': '© 2024 SNH Drivers. Alle rechten voorbehouden.',
     
-    // Testimonials
-    'testimonials.title': 'Wat Onze Klanten Zeggen',
-    'testimonials.role.business': 'Zakelijke Reiziger',
-    'testimonials.role.customer': 'Vaste Klant',
-    'testimonials.role.tourist': 'Toerist uit Duitsland',
-    'testimonials.1.text': 'De service is uitzonderlijk. De chauffeurs zijn altijd op tijd, professioneel en behulpzaam. De voertuigen zijn luxueus en brandschoon. Perfect voor zakelijke bijeenkomsten!',
-    'testimonials.2.text': 'Al meer dan een jaar gebruik ik hun taxidiensten voor mijn woon-werkverkeer. Betrouwbaar, punctueel en altijd met een glimlach. Zeer aanbevolen!',
-    'testimonials.3.text': 'Als toerist in Amsterdam was deze taxiservice een zegen. De chauffeur was ook een geweldige gids die ons de beste plekken in de stad liet zien. Een onvergetelijke ervaring!',
+    // Admin Dashboard
+    'admin.title': 'Admin Dashboard',
+    'admin.pageviews': 'Paginaweergaven',
+    'admin.bookings': 'Boekingen',
+    'admin.revenue': 'Omzet',
+    'admin.visitors': 'Bezoekers',
+    'admin.today': 'Vandaag',
+    'admin.week': 'Deze Week',
+    'admin.month': 'Deze Maand',
+    'admin.total': 'Totaal',
+    'admin.average': 'Gemiddeld',
+    'admin.traffic': 'Verkeersbronnen',
+    'admin.routes': 'Populaire Routes',
+    'admin.recent': 'Recente Boekingen',
+    'admin.export': 'Exporteer Rapport',
     
-    // Common
-    'common.from': 'Vanaf',
-    'common.included': 'Inclusief',
-    'common.submit': 'Verstuur',
+    // Motor Taxi Specific
+    'motor.title': 'Motor Taxi Service',
+    'motor.subtitle': 'Snelle en efficiënte motor taxi service voor urgente ritten',
+    'motor.advantage': 'Waarom Motor Taxi?',
+    'motor.speed': 'Sneller dan auto\'s in druk verkeer',
+    'motor.flexibility': 'Flexibele routes en snelle doorstroming',
+    'motor.availability': '24/7 beschikbaarheid',
+    'motor.services': 'Onze Motor Diensten',
+    'motor.urgent': 'Urgente Ritten',
+    'motor.urgent.desc': 'Snelle ophaal voor urgente afspraken of noodgevallen',
+    'motor.business': 'Zakelijke Express',
+    'motor.business.desc': 'Snelle zakelijke transfers voor belangrijke vergaderingen',
+    'motor.delivery': 'Express Bezorging',
+    'motor.delivery.desc': 'Snelle bezorging van belangrijke documenten of pakketten',
+    'motor.tour': 'Motor Tours',
+    'motor.tour.desc': 'Unieke motor tours door Amsterdam en omgeving',
+    'motor.book': 'Boek Motor Taxi',
+    'motor.contact': 'Direct Motor Taxi Boeken',
   },
-  
   en: {
-    // Hero section
-    'hero.title': 'Travel in Comfort, Arrive in Style',
-    'hero.subtitle': 'Experience luxury transportation at its best with SNH Drivers',
-    'hero.button.book': 'Book a Ride',
-    'hero.button.whatsapp': 'WhatsApp Direct',
+    // English translations (keeping existing ones)
+    'nav.book': 'Book Now',
+    'nav.services': 'Services',
+    'nav.fleet': 'Fleet',
+    'nav.pricing': 'Pricing',
+    'nav.emergency': 'Emergency',
+    'nav.join': 'Join Us',
     
-    // Booking form
-    'booking.title': 'Book Your Ride',
+    'hero.title': 'SNH Drivers - Premium Taxi Service',
+    'hero.subtitle': 'Professional, reliable, and comfortable taxi service available 24/7. From airport transfers to city tours, we\'ve got you covered.',
+    'hero.book': 'Book Your Ride',
+    'hero.whatsapp': 'WhatsApp Direct',
+    'hero.emergency': 'Emergency: +31 20 123 4567',
+    'hero.emergency.title': 'Emergency Service Available',
+    'hero.emergency.subtitle': 'Need immediate assistance? Call our emergency hotline for fast response.',
+    'hero.features.24h': '24/7',
+    'hero.features.available': 'Available',
+    'hero.features.response': 'Response Time',
+    'hero.features.licensed': 'Licensed',
+    'hero.features.rating': 'Rating',
+    
+    'booking.title': 'Book Your Taxi',
+    'booking.subtitle': 'Quick and easy booking - we\'ll confirm your ride within minutes',
     'booking.name': 'Name',
-    'booking.phone': 'Phone Number',
-    'booking.pickup': 'Pickup Location',
-    'booking.dropoff': 'Destination',
-    'booking.datetime': 'Date & Time',
-    'booking.button': 'Book Now',
+    'booking.email': 'Email',
+    'booking.phone': 'Phone',
+    'booking.pickup': 'Pickup Address',
+    'booking.destination': 'Destination',
+    'booking.time': 'Pickup Time',
+    'booking.passengers': 'Passengers',
+    'booking.vehicle': 'Vehicle Type',
+    'booking.requests': 'Special Requests',
+    'booking.submit': 'Book Now',
+    'booking.confirmation': 'We\'ll contact you within 5 minutes to confirm your booking',
+    'booking.contact': 'Need immediate assistance? Call us:',
     
-    // Services
     'services.title': 'Our Services',
-    'services.economy.title': 'Economy',
-    'services.economy.description': 'Affordable and reliable transportation for your daily rides',
-    'services.business.title': 'Business',
-    'services.business.description': 'Premium comfort for business professionals',
-    'services.luxury.title': 'Luxury',
-    'services.luxury.description': 'First-class experience with top-tier vehicles',
+    'services.airport': 'Airport Transfer',
+    'services.airport.desc': 'Reliable transfers to and from Schiphol and other airports',
+    'services.city': 'City Transport',
+    'services.city.desc': 'Fast and comfortable rides through Amsterdam and surroundings',
+    'services.business': 'Business Transport',
+    'services.business.desc': 'Professional transport for business trips and events',
+    'services.tour': 'City Tours',
+    'services.tour.desc': 'Discover Amsterdam with our experienced drivers',
+    'services.motor': 'Motor Taxi Service',
+    'services.motor.desc': 'Fast motor taxi service for urgent rides',
     
-    // Airport transfers
-    'airport.title': 'Schiphol Airport Transfer',
-    'airport.subtitle': 'Comfortable and reliable airport transfers',
+    'emergency.title': '24/7 Emergency Service',
+    'emergency.subtitle': 'We are always there for you, even in emergencies',
+    'emergency.immediate': 'Immediate Pickup',
+    'emergency.immediate.desc': 'Emergency taxi service available 24/7. We\'ll be there within 10-15 minutes.',
+    'emergency.medical': 'Medical Transport',
+    'emergency.medical.desc': 'Professional medical transport to hospitals and clinics.',
+    'emergency.airport': 'Airport Emergency',
+    'emergency.airport.desc': 'Missed your flight? We\'ll get you to the airport as fast as possible.',
+    'emergency.breakdown': 'Breakdown Service',
+    'emergency.breakdown.desc': 'Your car broke down? We\'ll pick you up and take you where you need to go.',
     
-    // Destinations
-    'destinations.title': 'Tourist Destinations',
-    'destinations.subtitle': 'Discover the most beautiful places around Amsterdam',
+    'driver.title': 'Join Our Driver Team',
+    'driver.subtitle': 'Become part of Amsterdam\'s premier taxi service. We\'re looking for professional, reliable drivers to join our growing team.',
+    'driver.partnership': 'Driver Partnership',
+    'driver.partnership.desc': 'Join our network of professional drivers. We offer flexible schedules and competitive earnings.',
+    'driver.training': 'Training & Certification',
+    'driver.training.desc': 'Comprehensive training program to ensure you meet all legal requirements and provide excellent service.',
+    'driver.insurance': 'Insurance & Protection',
+    'driver.insurance.desc': 'Full insurance coverage and legal protection for all our drivers.',
+    'driver.earnings': 'Earnings & Benefits',
+    'driver.earnings.desc': 'Transparent earnings structure with bonuses and incentives for quality service.',
+    'driver.scheduling': 'Flexible Scheduling',
+    'driver.scheduling.desc': 'Work when you want - choose your own hours and availability.',
+    'driver.support': 'Support Network',
+    'driver.support.desc': '24/7 support and community of professional drivers to help you succeed.',
     
-    // Business travel
-    'business.title': 'Business Travel',
-    'business.subtitle': 'Premium taxi services for your company in Amsterdam and surroundings',
-    'business.tab.services': 'Services',
-    'business.tab.districts': 'Business Districts',
-    'business.tab.contact': 'Business Quote',
-    
-    // Fleet
-    'fleet.title': 'Our Vehicles',
+    'fleet.title': 'Our Fleet',
+    'fleet.subtitle': 'Modern, comfortable vehicles for every journey',
+    'fleet.economy': 'Economy',
     'fleet.business': 'Business',
     'fleet.luxury': 'Luxury',
-    'fleet.eco': 'Eco',
-    'fleet.features.passengers': '{count} Passengers',
-    'fleet.features.luggage': '{count} Pieces of Luggage',
-    'fleet.features.comfort': 'Climate Control',
-    'fleet.features.wifi': 'Free Wi-Fi',
-    'fleet.features.leather': 'Leather Interior',
-    'fleet.features.panoramic': 'Panoramic Roof',
-    'fleet.features.drinks': 'Refreshments',
-    'fleet.features.electric': '100% Electric',
-    'fleet.features.autopilot': 'Autopilot',
-    'fleet.button': 'Reserve This Vehicle',
+    'fleet.van': 'Van',
+    'fleet.motor': 'Motor',
     
-    // Calculator
-    'calculator.title': 'Calculate Your Fare',
-    'calculator.distance': 'Estimated Distance (km)',
+    'calculator.title': 'Price Calculator',
+    'calculator.subtitle': 'Estimate the cost of your ride',
+    'calculator.distance': 'Distance (km)',
     'calculator.vehicle': 'Vehicle Type',
-    'calculator.estimate': 'Estimated Costs',
-    'calculator.price': 'Expected Price',
-    'calculator.time': 'Travel Time',
-    'calculator.minutes': 'min',
-    'calculator.disclaimer': 'Prices are indicative. Actual rates may vary based on traffic, waiting time, and other factors.',
-    'calculator.book': 'Book at This Rate',
+    'calculator.calculate': 'Calculate Price',
+    'calculator.estimated': 'Estimated price:',
     
-    // Contact
-    'contact.call': 'Call directly',
-    'contact.whatsapp': 'WhatsApp',
-    'contact.toggle': 'Contact options',
-    
-    // Cookie Consent
-    'cookies.message': 'We use cookies to enhance your experience on our website. By using our website, you agree to our privacy policy.',
-    'cookies.privacy': 'Privacy Policy',
-    'cookies.accept': 'Accept',
-    
-    // Footer
-    'footer.tagline': 'Experience luxury transportation at its best. Available 24/7 for your comfort and convenience.',
     'footer.contact': 'Contact',
-    'footer.links': 'Quick Links',
-    'footer.book': 'Book a Ride',
-    'footer.services': 'Our Services',
-    'footer.business': 'Business Travel',
-    'footer.privacy': 'Privacy Policy',
-    'footer.terms': 'Terms & Conditions',
-    'footer.rights': 'All rights reserved',
+    'footer.phone': 'Phone',
+    'footer.email': 'Email',
+    'footer.address': 'Address',
+    'footer.services': 'Services',
+    'footer.about': 'About Us',
+    'footer.privacy': 'Privacy',
+    'footer.terms': 'Terms',
+    'footer.copyright': '© 2024 SNH Drivers. All rights reserved.',
     
-    // Testimonials
-    'testimonials.title': 'What Our Customers Say',
-    'testimonials.role.business': 'Business Traveler',
-    'testimonials.role.customer': 'Regular Customer',
-    'testimonials.role.tourist': 'Tourist from Germany',
-    'testimonials.1.text': 'The service is exceptional. The drivers are always on time, professional, and helpful. The vehicles are luxurious and immaculate. Perfect for business meetings!',
-    'testimonials.2.text': 'I have been using their taxi services for my daily commute for over a year now. Reliable, punctual, and always with a smile. Highly recommended!',
-    'testimonials.3.text': 'As a tourist in Amsterdam, this taxi service was a blessing. The driver was also a great guide who showed us the best places in the city. An unforgettable experience!',
+    'admin.title': 'Admin Dashboard',
+    'admin.pageviews': 'Page Views',
+    'admin.bookings': 'Bookings',
+    'admin.revenue': 'Revenue',
+    'admin.visitors': 'Visitors',
+    'admin.today': 'Today',
+    'admin.week': 'This Week',
+    'admin.month': 'This Month',
+    'admin.total': 'Total',
+    'admin.average': 'Average',
+    'admin.traffic': 'Traffic Sources',
+    'admin.routes': 'Popular Routes',
+    'admin.recent': 'Recent Bookings',
+    'admin.export': 'Export Report',
     
-    // Common
-    'common.from': 'From',
-    'common.included': 'Included',
-    'common.submit': 'Submit',
+    'motor.title': 'Motor Taxi Service',
+    'motor.subtitle': 'Fast and efficient motor taxi service for urgent rides',
+    'motor.advantage': 'Why Motor Taxi?',
+    'motor.speed': 'Faster than cars in heavy traffic',
+    'motor.flexibility': 'Flexible routes and quick navigation',
+    'motor.availability': '24/7 availability',
+    'motor.services': 'Our Motor Services',
+    'motor.urgent': 'Urgent Rides',
+    'motor.urgent.desc': 'Quick pickup for urgent appointments or emergencies',
+    'motor.business': 'Business Express',
+    'motor.business.desc': 'Fast business transfers for important meetings',
+    'motor.delivery': 'Express Delivery',
+    'motor.delivery.desc': 'Quick delivery of important documents or packages',
+    'motor.tour': 'Motor Tours',
+    'motor.tour.desc': 'Unique motor tours through Amsterdam and surroundings',
+    'motor.book': 'Book Motor Taxi',
+    'motor.contact': 'Direct Motor Taxi Booking',
   },
-  
   de: {
-    // Hero section
-    'hero.title': 'Reisen Sie komfortabel, kommen Sie stilvoll an',
-    'hero.subtitle': 'Erleben Sie Luxustransport vom Feinsten mit SNH Drivers',
-    'hero.button.book': 'Fahrt buchen',
-    'hero.button.whatsapp': 'WhatsApp Direkt',
+    // German translations (keeping existing ones)
+    'nav.book': 'Jetzt Buchen',
+    'nav.services': 'Dienstleistungen',
+    'nav.fleet': 'Flotte',
+    'nav.pricing': 'Preise',
+    'nav.emergency': 'Notfall',
+    'nav.join': 'Fahrer Werden',
     
-    // Booking form
-    'booking.title': 'Buchen Sie Ihre Fahrt',
+    'hero.title': 'SNH Drivers - Premium Taxi Service',
+    'hero.subtitle': 'Professioneller, zuverlässiger und komfortabler Taxiservice 24/7 verfügbar. Vom Flughafentransfer bis zu Stadtrundfahrten, wir sind für Sie da.',
+    'hero.book': 'Fahrt Buchen',
+    'hero.whatsapp': 'WhatsApp Direkt',
+    'hero.emergency': 'Notfall: +31 20 123 4567',
+    'hero.emergency.title': 'Notfallservice Verfügbar',
+    'hero.emergency.subtitle': 'Sofortige Hilfe benötigt? Rufen Sie unsere Notfallhotline für schnelle Reaktion.',
+    'hero.features.24h': '24/7',
+    'hero.features.available': 'Verfügbar',
+    'hero.features.response': 'Reaktionszeit',
+    'hero.features.licensed': 'Lizenziert',
+    'hero.features.rating': 'Bewertung',
+    
+    'booking.title': 'Taxi Buchen',
+    'booking.subtitle': 'Schnelle und einfache Buchung - wir bestätigen Ihre Fahrt innerhalb von Minuten',
     'booking.name': 'Name',
-    'booking.phone': 'Telefonnummer',
-    'booking.pickup': 'Abholort',
-    'booking.dropoff': 'Zielort',
-    'booking.datetime': 'Datum & Zeit',
-    'booking.button': 'Jetzt buchen',
+    'booking.email': 'E-Mail',
+    'booking.phone': 'Telefon',
+    'booking.pickup': 'Abholadresse',
+    'booking.destination': 'Ziel',
+    'booking.time': 'Abholzeit',
+    'booking.passengers': 'Passagiere',
+    'booking.vehicle': 'Fahrzeugtyp',
+    'booking.requests': 'Besondere Wünsche',
+    'booking.submit': 'Jetzt Buchen',
+    'booking.confirmation': 'Wir kontaktieren Sie innerhalb von 5 Minuten zur Bestätigung Ihrer Buchung',
+    'booking.contact': 'Sofortige Hilfe benötigt? Rufen Sie uns an:',
     
-    // Services
     'services.title': 'Unsere Dienstleistungen',
-    'services.economy.title': 'Economy',
-    'services.economy.description': 'Erschwinglicher und zuverlässiger Transport für Ihre täglichen Fahrten',
-    'services.business.title': 'Business',
-    'services.business.description': 'Premium-Komfort für Geschäftsleute',
-    'services.luxury.title': 'Luxus',
-    'services.luxury.description': 'Erstklassiges Erlebnis mit erstklassigen Fahrzeugen',
+    'services.airport': 'Flughafentransfer',
+    'services.airport.desc': 'Zuverlässige Transfers zu und von Schiphol und anderen Flughäfen',
+    'services.city': 'Stadtverkehr',
+    'services.city.desc': 'Schnelle und komfortable Fahrten durch Amsterdam und Umgebung',
+    'services.business': 'Geschäftsverkehr',
+    'services.business.desc': 'Professioneller Transport für Geschäftsreisen und Events',
+    'services.tour': 'Stadtrundfahrten',
+    'services.tour.desc': 'Entdecken Sie Amsterdam mit unseren erfahrenen Fahrern',
+    'services.motor': 'Motor Taxi Service',
+    'services.motor.desc': 'Schneller Motor Taxi Service für dringende Fahrten',
     
-    // Airport transfers
-    'airport.title': 'Schiphol Flughafentransfer',
-    'airport.subtitle': 'Komfortable und zuverlässige Flughafentransfers',
+    'emergency.title': '24/7 Notfallservice',
+    'emergency.subtitle': 'Wir sind immer für Sie da, auch in Notfällen',
+    'emergency.immediate': 'Sofortige Abholung',
+    'emergency.immediate.desc': 'Notfall Taxiservice 24/7 verfügbar. Wir sind innerhalb von 10-15 Minuten da.',
+    'emergency.medical': 'Medizinischer Transport',
+    'emergency.medical.desc': 'Professioneller medizinischer Transport zu Krankenhäusern und Kliniken.',
+    'emergency.airport': 'Flughafen Notfall',
+    'emergency.airport.desc': 'Flug verpasst? Wir bringen Sie so schnell wie möglich zum Flughafen.',
+    'emergency.breakdown': 'Pannenhilfe',
+    'emergency.breakdown.desc': 'Ihr Auto hat eine Panne? Wir holen Sie ab und bringen Sie wohin Sie müssen.',
     
-    // Destinations
-    'destinations.title': 'Touristische Ziele',
-    'destinations.subtitle': 'Entdecken Sie die schönsten Orte rund um Amsterdam',
+    'driver.title': 'Werden Sie Teil Unseres Fahrerteams',
+    'driver.subtitle': 'Werden Sie Teil von Amsterdams erstklassigem Taxiservice. Wir suchen professionelle, zuverlässige Fahrer für unser wachsendes Team.',
+    'driver.partnership': 'Fahrer Partnership',
+    'driver.partnership.desc': 'Schließen Sie sich unserem Netzwerk professioneller Fahrer an. Wir bieten flexible Zeitpläne und wettbewerbsfähige Verdienste.',
+    'driver.training': 'Training & Zertifizierung',
+    'driver.training.desc': 'Umfassendes Trainingsprogramm um sicherzustellen, dass Sie alle rechtlichen Anforderungen erfüllen und ausgezeichneten Service bieten.',
+    'driver.insurance': 'Versicherung & Schutz',
+    'driver.insurance.desc': 'Vollständige Versicherungsabdeckung und rechtlicher Schutz für alle unsere Fahrer.',
+    'driver.earnings': 'Verdienste & Vorteile',
+    'driver.earnings.desc': 'Transparente Verdienststruktur mit Boni und Anreizen für Qualitätsservice.',
+    'driver.scheduling': 'Flexible Planung',
+    'driver.scheduling.desc': 'Arbeiten Sie wann Sie wollen - wählen Sie Ihre eigenen Stunden und Verfügbarkeit.',
+    'driver.support': 'Unterstützungsnetzwerk',
+    'driver.support.desc': '24/7 Unterstützung und Gemeinschaft professioneller Fahrer um Ihnen zum Erfolg zu verhelfen.',
     
-    // Business travel
-    'business.title': 'Geschäftsreisen',
-    'business.subtitle': 'Premium-Taxidienste für Ihr Unternehmen in Amsterdam und Umgebung',
-    'business.tab.services': 'Dienstleistungen',
-    'business.tab.districts': 'Geschäftsviertel',
-    'business.tab.contact': 'Geschäftsangebot',
-    
-    // Fleet
-    'fleet.title': 'Unsere Fahrzeuge',
+    'fleet.title': 'Unsere Flotte',
+    'fleet.subtitle': 'Moderne, komfortable Fahrzeuge für jede Reise',
+    'fleet.economy': 'Economy',
     'fleet.business': 'Business',
     'fleet.luxury': 'Luxus',
-    'fleet.eco': 'Eco',
-    'fleet.features.passengers': '{count} Passagiere',
-    'fleet.features.luggage': '{count} Gepäckstücke',
-    'fleet.features.comfort': 'Klimaanlage',
-    'fleet.features.wifi': 'Kostenloses WLAN',
-    'fleet.features.leather': 'Lederausstattung',
-    'fleet.features.panoramic': 'Panoramadach',
-    'fleet.features.drinks': 'Erfrischungen',
-    'fleet.features.electric': '100% Elektrisch',
-    'fleet.features.autopilot': 'Autopilot',
-    'fleet.button': 'Dieses Fahrzeug reservieren',
+    'fleet.van': 'Van',
+    'fleet.motor': 'Motor',
     
-    // Calculator
-    'calculator.title': 'Berechnen Sie Ihren Fahrpreis',
-    'calculator.distance': 'Geschätzte Entfernung (km)',
+    'calculator.title': 'Preisrechner',
+    'calculator.subtitle': 'Schätzen Sie die Kosten Ihrer Fahrt',
+    'calculator.distance': 'Entfernung (km)',
     'calculator.vehicle': 'Fahrzeugtyp',
-    'calculator.estimate': 'Geschätzte Kosten',
-    'calculator.price': 'Erwarteter Preis',
-    'calculator.time': 'Fahrzeit',
-    'calculator.minutes': 'min',
-    'calculator.disclaimer': 'Preise sind Richtwerte. Die tatsächlichen Tarife können je nach Verkehr, Wartezeit und anderen Faktoren variieren.',
-    'calculator.book': 'Zu diesem Tarif buchen',
+    'calculator.calculate': 'Preis Berechnen',
+    'calculator.estimated': 'Geschätzter Preis:',
     
-    // Contact
-    'contact.call': 'Direkt anrufen',
-    'contact.whatsapp': 'WhatsApp',
-    'contact.toggle': 'Kontaktoptionen',
-    
-    // Cookie Consent
-    'cookies.message': 'Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Durch die Nutzung unserer Website stimmen Sie unserer Datenschutzrichtlinie zu.',
-    'cookies.privacy': 'Datenschutzrichtlinie',
-    'cookies.accept': 'Akzeptieren',
-    
-    // Footer
-    'footer.tagline': 'Erleben Sie Luxustransport vom Feinsten. Rund um die Uhr für Ihren Komfort und Ihre Bequemlichkeit verfügbar.',
     'footer.contact': 'Kontakt',
-    'footer.links': 'Schnelllinks',
-    'footer.book': 'Fahrt buchen',
-    'footer.services': 'Unsere Dienstleistungen',
-    'footer.business': 'Geschäftsreisen',
-    'footer.privacy': 'Datenschutzrichtlinie',
-    'footer.terms': 'AGB',
-    'footer.rights': 'Alle Rechte vorbehalten',
+    'footer.phone': 'Telefon',
+    'footer.email': 'E-Mail',
+    'footer.address': 'Adresse',
+    'footer.services': 'Dienstleistungen',
+    'footer.about': 'Über Uns',
+    'footer.privacy': 'Datenschutz',
+    'footer.terms': 'Bedingungen',
+    'footer.copyright': '© 2024 SNH Drivers. Alle Rechte vorbehalten.',
     
-    // Testimonials
-    'testimonials.title': 'Was unsere Kunden sagen',
-    'testimonials.role.business': 'Geschäftsreisender',
-    'testimonials.role.customer': 'Stammkunde',
-    'testimonials.role.tourist': 'Tourist aus Deutschland',
-    'testimonials.1.text': 'Der Service ist außergewöhnlich. Die Fahrer sind immer pünktlich, professionell und hilfsbereit. Die Fahrzeuge sind luxuriös und makellos. Perfekt für Geschäftstermine!',
-    'testimonials.2.text': 'Ich nutze ihre Taxidienste seit über einem Jahr für meinen täglichen Arbeitsweg. Zuverlässig, pünktlich und immer mit einem Lächeln. Sehr empfehlenswert!',
-    'testimonials.3.text': 'Als Tourist in Amsterdam war dieser Taxiservice ein Segen. Der Fahrer war auch ein großartiger Führer, der uns die besten Orte in der Stadt zeigte. Ein unvergessliches Erlebnis!',
+    'admin.title': 'Admin Dashboard',
+    'admin.pageviews': 'Seitenaufrufe',
+    'admin.bookings': 'Buchungen',
+    'admin.revenue': 'Umsatz',
+    'admin.visitors': 'Besucher',
+    'admin.today': 'Heute',
+    'admin.week': 'Diese Woche',
+    'admin.month': 'Dieser Monat',
+    'admin.total': 'Gesamt',
+    'admin.average': 'Durchschnitt',
+    'admin.traffic': 'Verkehrsquellen',
+    'admin.routes': 'Beliebte Routen',
+    'admin.recent': 'Aktuelle Buchungen',
+    'admin.export': 'Bericht Exportieren',
     
-    // Common
-    'common.from': 'Ab',
-    'common.included': 'Inklusive',
-    'common.submit': 'Absenden',
+    'motor.title': 'Motor Taxi Service',
+    'motor.subtitle': 'Schneller und effizienter Motor Taxi Service für dringende Fahrten',
+    'motor.advantage': 'Warum Motor Taxi?',
+    'motor.speed': 'Schneller als Autos im dichten Verkehr',
+    'motor.flexibility': 'Flexible Routen und schnelle Navigation',
+    'motor.availability': '24/7 Verfügbarkeit',
+    'motor.services': 'Unsere Motor Dienstleistungen',
+    'motor.urgent': 'Dringende Fahrten',
+    'motor.urgent.desc': 'Schnelle Abholung für dringende Termine oder Notfälle',
+    'motor.business': 'Business Express',
+    'motor.business.desc': 'Schnelle Geschäftstransfers für wichtige Meetings',
+    'motor.delivery': 'Express Lieferung',
+    'motor.delivery.desc': 'Schnelle Lieferung wichtiger Dokumente oder Pakete',
+    'motor.tour': 'Motor Touren',
+    'motor.tour.desc': 'Einzigartige Motor Touren durch Amsterdam und Umgebung',
+    'motor.book': 'Motor Taxi Buchen',
+    'motor.contact': 'Direkte Motor Taxi Buchung',
   }
 };
 
-// Provider component
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Initialize with browser language or default to Dutch
-  const [language, setLanguageState] = useState<LanguageCode>('nl');
+  const [language, setLanguage] = useState<Language>('nl'); // Default to Dutch
 
-  // Load language preference from localStorage on initial render
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as LanguageCode;
-    if (savedLanguage && ['nl', 'en', 'de'].includes(savedLanguage)) {
-      setLanguageState(savedLanguage);
-    }
-  }, []);
-
-  // Translation function with parameter interpolation
-  const t = (key: string, params?: TranslationParams): string => {
-    let text = translations[language][key] || key;
-    
-    // Perform parameter substitution if params are provided
-    if (params) {
-      Object.entries(params).forEach(([paramKey, paramValue]) => {
-        text = text.replace(`{${paramKey}}`, String(paramValue));
-      });
-    }
-    
-    return text;
-  };
-
-  // Set language and save to localStorage
-  const setLanguage = (code: LanguageCode) => {
-    setLanguageState(code);
-    localStorage.setItem('language', code);
-    
-    // Update the HTML lang attribute
-    document.documentElement.lang = code;
+  const t = (key: string): string => {
+    return translations[language][key as keyof typeof translations[typeof language]] || key;
   };
 
   return (
@@ -374,7 +438,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// Custom hook to use the language context
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {

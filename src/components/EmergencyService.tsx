@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaPhone, FaClock, FaShieldAlt, FaCar, FaExclamationTriangle, FaMapMarkerAlt } from 'react-icons/fa';
-// import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 const emergencyServices = [
   {
@@ -32,7 +32,7 @@ const emergencyServices = [
 ];
 
 export default function EmergencyService() {
-  // const { t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section className="py-16 px-4 bg-red-900/20 border-t border-red-800/30" id="emergency">
@@ -46,7 +46,7 @@ export default function EmergencyService() {
         >
           <div className="flex items-center justify-center mb-4">
             <FaExclamationTriangle className="text-red-500 text-4xl mr-3" />
-            <h2 className="text-3xl font-bold">Emergency Taxi Service</h2>
+            <h2 className="text-3xl font-bold">{t('emergency.title')}</h2>
           </div>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Need a taxi immediately? We provide 24/7 emergency taxi services for urgent situations. 

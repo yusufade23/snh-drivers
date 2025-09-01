@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FaUsers, FaWifi, FaSuitcase, FaSnowflake, FaGlassMartiniAlt, FaMusic, FaChargingStation, FaLeaf } from 'react-icons/fa';
+import { FaUsers, FaWifi, FaSuitcase, FaSnowflake, FaGlassMartiniAlt, FaMusic, FaChargingStation, FaLeaf, FaMotorcycle } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
 
@@ -26,10 +26,10 @@ export default function FleetGallery() {
       category: t('fleet.business'),
       image: "/fleet/mercedes-e.jpg",
       features: [
-        t('fleet.features.passengers', { count: 4 }),
-        t('fleet.features.luggage', { count: 3 }),
-        t('fleet.features.comfort'),
-        t('fleet.features.wifi')
+        "4 Passagiers",
+        "3 Koffers",
+        "Comfort",
+        "Wi-Fi"
       ],
       icons: [<FaUsers key="users" />, <FaSuitcase key="luggage" />, <FaWifi key="wifi" />, <FaSnowflake key="ac" />]
     },
@@ -39,10 +39,10 @@ export default function FleetGallery() {
       category: t('fleet.business'),
       image: "/fleet/bmw-5.jpg",
       features: [
-        t('fleet.features.passengers', { count: 4 }),
-        t('fleet.features.luggage', { count: 3 }),
-        t('fleet.features.leather'),
-        t('fleet.features.wifi')
+        "4 Passagiers",
+        "3 Koffers",
+        "Lederen Stoelen",
+        "Wi-Fi"
       ],
       icons: [<FaUsers key="users" />, <FaSuitcase key="luggage" />, <FaWifi key="wifi" />, <FaSnowflake key="ac" />]
     },
@@ -52,10 +52,10 @@ export default function FleetGallery() {
       category: t('fleet.luxury'),
       image: "/fleet/mercedes-v.jpg",
       features: [
-        t('fleet.features.passengers', { count: 7 }),
-        t('fleet.features.luggage', { count: 6 }),
-        t('fleet.features.panoramic'),
-        t('fleet.features.drinks')
+        "7 Passagiers",
+        "6 Koffers",
+        "Panoramadak",
+        "Drankjes"
       ],
       icons: [<FaUsers key="users" />, <FaSuitcase key="luggage" />, <FaGlassMartiniAlt key="drinks" />, <FaMusic key="entertainment" />]
     },
@@ -65,12 +65,25 @@ export default function FleetGallery() {
       category: t('fleet.eco'),
       image: "/fleet/tesla-s.jpg",
       features: [
-        t('fleet.features.passengers', { count: 5 }),
-        t('fleet.features.luggage', { count: 2 }),
-        t('fleet.features.electric'),
-        t('fleet.features.autopilot')
+        "5 Passagiers",
+        "2 Koffers",
+        "Elektrisch",
+        "Autopilot"
       ],
       icons: [<FaUsers key="users" />, <FaSuitcase key="luggage" />, <FaChargingStation key="electric" />, <FaLeaf key="eco" />]
+    },
+    {
+      id: 5,
+      name: "Motor Taxi",
+      category: t('fleet.motor'),
+      image: "/fleet/motor-taxi.jpg",
+      features: [
+        "1-2 Passagiers",
+        "Snelle Service",
+        "Flexibele Routes",
+        "24/7 Beschikbaar"
+      ],
+      icons: [<FaMotorcycle key="motor" />, <FaUsers key="users" />, <FaSnowflake key="speed" />, <FaLeaf key="eco" />]
     }
   ];
 

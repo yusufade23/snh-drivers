@@ -40,7 +40,10 @@ export default function Home() {
                   Emergency
                 </a>
                 <a href="#driver-services" className="text-gray-300 hover:text-yellow-500 transition-colors">
-                  Join Us
+                  Word Chauffeur
+                </a>
+                <a href="/motor" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Motor Taxi
                 </a>
               </nav>
             </div>

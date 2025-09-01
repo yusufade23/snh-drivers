@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { FaWhatsapp, FaPhone, FaExclamationTriangle, FaCar, FaClock, FaShieldAlt } from 'react-icons/fa';
-// import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
-  // const { t } = useLanguage();
+  const { t } = useLanguage();
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Hi! I'd like to book a taxi ride. Can you help me?");
@@ -45,8 +45,7 @@ export default function Hero() {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              Professional, reliable, and comfortable taxi service available 24/7. 
-              From airport transfers to city tours, we&apos;ve got you covered.
+              {t('hero.subtitle')}
             </p>
           </div>
 

@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGlobeEurope, FaCheck } from 'react-icons/fa';
-import { useLanguage, LanguageCode } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 type Language = {
-  code: LanguageCode;
+  code: 'nl' | 'en' | 'de';
   name: string;
   flag: string;
 };
@@ -25,7 +25,7 @@ export default function LanguageSwitcher() {
     setIsOpen(!isOpen);
   };
 
-  const selectLanguage = (langCode: LanguageCode) => {
+  const selectLanguage = (langCode: 'nl' | 'en' | 'de') => {
     setLanguage(langCode);
     setIsOpen(false);
   };
