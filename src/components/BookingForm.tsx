@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { FaMapMarkerAlt, FaClock, FaUser, FaCar, FaEnvelope, FaPhone } from 'react-icons/fa';
-import { useLanguage } from '@/context/LanguageContext';
+// import { useLanguage } from '@/context/LanguageContext';
 import toast from 'react-hot-toast';
 
 const bookingSchema = z.object({
@@ -25,7 +25,7 @@ type BookingFormData = z.infer<typeof bookingSchema>;
 
 export default function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
   const {
     register,
@@ -82,7 +82,7 @@ export default function BookingForm() {
       } else {
         toast.error(result.error || 'Failed to send booking request. Please try again.');
       }
-    } catch (error) {
+          } catch {
       toast.error('Network error. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
@@ -100,7 +100,7 @@ export default function BookingForm() {
         >
           <h2 className="text-3xl font-bold mb-4">Book Your Taxi</h2>
           <p className="text-gray-400 text-lg">
-            Quick and easy booking - we'll confirm your ride within minutes
+            Quick and easy booking - we&apos;ll confirm your ride within minutes
           </p>
         </motion.div>
 
@@ -284,7 +284,7 @@ export default function BookingForm() {
             </div>
 
             <div className="text-center text-sm text-gray-400">
-              <p>We'll contact you within 5 minutes to confirm your booking</p>
+              <p>We&apos;ll contact you within 5 minutes to confirm your booking</p>
               <p className="mt-2">
                 Need immediate assistance? Call us: <span className="text-yellow-500">+31 20 123 4567</span>
               </p>

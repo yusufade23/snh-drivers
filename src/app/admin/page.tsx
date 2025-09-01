@@ -8,13 +8,9 @@ import {
   FaUsers, 
   FaCar, 
   FaEuroSign, 
-  FaPhone, 
-  FaWhatsapp, 
-  FaCalendarAlt,
   FaMapMarkerAlt,
   FaClock,
-  FaDownload,
-  FaFilter
+  FaDownload
 } from 'react-icons/fa';
 
 interface AnalyticsData {
@@ -256,7 +252,7 @@ export default function AdminDashboard() {
               Page Views
             </h3>
             <div className="space-y-4">
-              {analytics.pageViews.pages.map((page, index) => (
+              {analytics.pageViews.pages.map((page) => (
                 <div key={page.name} className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex justify-between mb-1">
@@ -286,7 +282,7 @@ export default function AdminDashboard() {
               Traffic Sources
             </h3>
             <div className="space-y-4">
-              {analytics.traffic.sources.map((source, index) => (
+              {analytics.traffic.sources.map((source) => (
                 <div key={source.name} className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex justify-between mb-1">

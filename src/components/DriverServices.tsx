@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { FaCar, FaGraduationCap, FaHandshake, FaEuroSign, FaShieldAlt, FaClock, FaUsers, FaChartLine } from 'react-icons/fa';
-import { useLanguage } from '@/context/LanguageContext';
+import { FaGraduationCap, FaHandshake, FaEuroSign, FaShieldAlt, FaClock, FaUsers, FaChartLine } from 'react-icons/fa';
+// import { useLanguage } from '@/context/LanguageContext';
 
 const driverServices = [
   {
@@ -64,7 +64,7 @@ const benefits = [
 ];
 
 export default function DriverServices() {
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
   return (
     <section className="py-16 px-4 bg-gray-900" id="driver-services">
@@ -78,7 +78,7 @@ export default function DriverServices() {
         >
           <h2 className="text-3xl font-bold mb-4">Join Our Driver Team</h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Become part of Amsterdam's premier taxi service. We're looking for professional, 
+            Become part of Amsterdam&apos;s premier taxi service. We&apos;re looking for professional, 
             reliable drivers to join our growing team.
           </p>
         </motion.div>

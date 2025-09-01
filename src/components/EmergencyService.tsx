@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaPhone, FaClock, FaShieldAlt, FaCar, FaExclamationTriangle, FaMapMarkerAlt } from 'react-icons/fa';
-import { useLanguage } from '@/context/LanguageContext';
+// import { useLanguage } from '@/context/LanguageContext';
 
 const emergencyServices = [
   {
@@ -32,7 +32,7 @@ const emergencyServices = [
 ];
 
 export default function EmergencyService() {
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
   return (
     <section className="py-16 px-4 bg-red-900/20 border-t border-red-800/30" id="emergency">
