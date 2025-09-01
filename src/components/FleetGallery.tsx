@@ -109,7 +109,7 @@ export default function FleetGallery() {
                       className="object-cover"
                       width={300}
                       height={170}
-                      layout="responsive"
+                      style={{ width: '100%', height: 'auto' }}
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">

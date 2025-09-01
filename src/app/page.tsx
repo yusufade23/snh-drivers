@@ -6,6 +6,8 @@ import Services from "@/components/Services";
 import BusinessTravel from "@/components/BusinessTravel";
 import PriceCalculator from "@/components/PriceCalculator";
 import FleetGallery from "@/components/FleetGallery";
+import DriverServices from "@/components/DriverServices";
+import EmergencyService from "@/components/EmergencyService";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FloatingContact from "@/components/FloatingContact";
@@ -34,8 +36,11 @@ export default function Home() {
                 <a href="#calculator" className="text-gray-300 hover:text-yellow-500 transition-colors">
                   Pricing
                 </a>
-                <a href="#business" className="text-gray-300 hover:text-yellow-500 transition-colors">
-                  Business
+                <a href="#emergency" className="text-gray-300 hover:text-red-400 transition-colors">
+                  Emergency
+                </a>
+                <a href="#driver-services" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Join Us
                 </a>
               </nav>
             </div>
@@ -69,6 +74,8 @@ export default function Home() {
         <Services />
         <PriceCalculator />
         <FleetGallery />
+        <EmergencyService />
+        <DriverServices />
         <BusinessTravel />
         <Testimonials />
       </main>
