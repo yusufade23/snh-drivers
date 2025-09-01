@@ -87,16 +87,7 @@ export default function Home() {
       <FloatingContact />
       <CookieConsent />
       
-      {/* Hidden Admin Link */}
-      <div className="fixed bottom-4 left-4 opacity-20 hover:opacity-100 transition-opacity">
-        <a 
-          href="/admin" 
-          className="text-xs text-gray-400 hover:text-yellow-500"
-          title="Admin Dashboard"
-        >
-          Admin
-        </a>
-      </div>
+
     </div>
   );
 }
