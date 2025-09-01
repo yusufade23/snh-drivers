@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import Hero from "@/components/Hero";
 import BookingForm from "@/components/BookingForm";
 import Services from "@/components/Services";
@@ -12,16 +11,8 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FloatingContact from "@/components/FloatingContact";
 import CookieConsent from "@/components/CookieConsent";
 import Testimonials from "@/components/Testimonials";
-import { FaUser, FaCar, FaSignOutAlt } from "react-icons/fa";
-import { signOut } from "next-auth/react";
 
 export default function Home() {
-  const { data: session } = useSession();
-
-  const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
-  };
-
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Navigation Header */}
@@ -31,6 +22,9 @@ export default function Home() {
             <div className="flex items-center space-x-8">
               <h1 className="text-2xl font-bold text-yellow-500">SNH Drivers</h1>
               <nav className="hidden md:flex space-x-6">
+                <a href="#booking" className="text-gray-300 hover:text-yellow-500 transition-colors">
+                  Book Now
+                </a>
                 <a href="#services" className="text-gray-300 hover:text-yellow-500 transition-colors">
                   Services
                 </a>
@@ -49,49 +43,20 @@ export default function Home() {
             <div className="flex items-center space-x-4">
               <LanguageSwitcher />
               
-              {session ? (
-                <div className="flex items-center space-x-3">
-                  {session.user?.role === "DRIVER" ? (
-                    <a
-                      href="/driver"
-                      className="flex items-center space-x-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
-                    >
-                      <FaCar />
-                      <span>Driver Dashboard</span>
-                    </a>
-                  ) : (
-                    <a
-                      href="/dashboard"
-                      className="flex items-center space-x-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
-                    >
-                      <FaUser />
-                      <span>My Account</span>
-                    </a>
-                  )}
-                  <button
-                    onClick={handleSignOut}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-red-400 transition-colors"
-                  >
-                    <FaSignOutAlt />
-                    <span>Sign Out</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="flex items-center space-x-3">
-                  <a
-                    href="/auth/signin"
-                    className="text-gray-300 hover:text-yellow-500 transition-colors"
-                  >
-                    Sign In
-                  </a>
-                  <a
-                    href="/auth/signup"
-                    className="bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
-                  >
-                    Sign Up
-                  </a>
-                </div>
-              )}
+              <div className="flex items-center space-x-3">
+                <a
+                  href="tel:+31201234567"
+                  className="text-gray-300 hover:text-yellow-500 transition-colors"
+                >
+                  +31 20 123 4567
+                </a>
+                <a
+                  href="#booking"
+                  className="bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
+                >
+                  Book Now
+                </a>
+              </div>
             </div>
           </div>
         </div>

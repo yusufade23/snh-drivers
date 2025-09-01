@@ -1,6 +1,6 @@
-# SNH Drivers - Taxi Centrale System
+# SNH Drivers - Simple Taxi Centrale
 
-A comprehensive taxi dispatch center (taxi centrale) built with Next.js, featuring real-time booking management, driver dispatch, customer portals, and multilingual support. This system transforms your taxi service into a full-featured dispatch center similar to sneleentaxi.nl.
+A streamlined taxi dispatch center built with Next.js, featuring email-based booking management similar to sneleentaxi.nl. No authentication required - just simple, effective taxi booking via email.
 
 ![SNH Drivers Taxi Centrale](public/hero-bg.jpg)
 
@@ -8,67 +8,40 @@ A comprehensive taxi dispatch center (taxi centrale) built with Next.js, featuri
 
 Visit the live taxi centrale: [https://snh-drivers.vercel.app](https://snh-drivers.vercel.app)
 
-## 🚕 Taxi Centrale Features
+## 🚕 Simple Taxi Centrale Features
 
 ### For Customers
 - 🌐 **Multilingual Support** (Dutch, English, German)
-- 📱 **Real-time Booking System** with instant confirmation
+- 📧 **Email-based Booking System** - no signup required
 - 💰 **Interactive Price Calculator** with transparent pricing
 - 🚗 **Fleet Gallery** showcasing available vehicles
-- 📊 **Customer Dashboard** with booking history and account management
-- 💳 **Secure Payment Processing** with Stripe integration
-- 📍 **Real-time Ride Tracking** (coming soon)
 - 📞 **Multiple Contact Options** (form, WhatsApp, phone)
-
-### For Drivers
-- 🎯 **Driver Dashboard** with earnings tracking
-- 📱 **Real-time Booking Notifications**
-- 🚦 **Availability Toggle** (online/offline status)
-- 💰 **Earnings Management** with detailed reports
-- 📍 **GPS Location Tracking** (coming soon)
-- 📊 **Performance Analytics** and ratings
+- ✨ **Instant Email Confirmation** for all bookings
 
 ### For Administrators
-- 👥 **Driver Management** system
-- 🚗 **Fleet Management** with vehicle tracking
-- 💼 **Business Travel** coordination
-- 📈 **Financial Reports** and analytics
-- 🎛️ **Dispatch Control** center
-- 📱 **Real-time Monitoring** of all operations
+- 📧 **Email Notifications** for all booking requests
+- 📊 **Professional Email Templates** with booking details
+- 🎯 **Direct Customer Communication** via email
+- 📱 **Mobile-responsive** email notifications
 
-## 🏗️ System Architecture
+## 🏗️ Simple Architecture
 
 ### Frontend
 - **Next.js 15** - React framework with App Router
 - **TypeScript** - Type-safe development
 - **TailwindCSS** - Utility-first styling
 - **Framer Motion** - Smooth animations
-- **NextAuth.js** - Authentication system
 
 ### Backend
-- **Prisma** - Database ORM
-- **PostgreSQL** - Primary database
 - **Next.js API Routes** - Serverless backend
-- **Stripe** - Payment processing
-- **Socket.io** - Real-time communications
-
-### Database Schema
-```
-├── Users (Customers)
-├── Drivers
-├── Vehicles
-├── Bookings
-├── Payments
-├── DriverEarnings
-└── Messages
-```
+- **Nodemailer** - Email functionality
+- **Form Validation** - Zod schema validation
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 18+
-- PostgreSQL database
-- Stripe account (for payments)
+- Gmail account (for sending emails)
 
 ### Installation
 
@@ -89,24 +62,17 @@ cp .env.example .env.local
 ```
 Edit `.env.local` with your configuration:
 ```env
-DATABASE_URL="postgresql://username:password@localhost:5432/snh_drivers"
-NEXTAUTH_SECRET="your-secret-key"
-STRIPE_PUBLISHABLE_KEY="pk_test_..."
-STRIPE_SECRET_KEY="sk_test_..."
+EMAIL_USER="your-email@gmail.com"
+EMAIL_PASS="your-gmail-app-password"
+ADMIN_EMAIL="admin@snhdrivers.nl"
 ```
 
-4. **Set up the database**
-```bash
-npx prisma generate
-npx prisma db push
-```
-
-5. **Run the development server**
+4. **Run the development server**
 ```bash
 npm run dev
 ```
 
-6. **Open your browser**
+5. **Open your browser**
 Visit [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Project Structure
@@ -115,81 +81,64 @@ Visit [http://localhost:3000](http://localhost:3000)
 snh-drivers/
 ├── src/
 │   ├── app/
-│   │   ├── api/                    # API routes
-│   │   │   ├── auth/              # Authentication
-│   │   │   ├── bookings/          # Booking management
-│   │   │   └── driver/            # Driver operations
-│   │   ├── auth/                  # Authentication pages
-│   │   ├── dashboard/             # Customer dashboard
-│   │   ├── driver/                # Driver dashboard
-│   │   ├── page.tsx               # Main landing page
-│   │   └── layout.tsx             # Root layout
-│   ├── components/                # React components
-│   │   ├── Hero.tsx              # Landing hero section
-│   │   ├── BookingForm.tsx       # Booking form
-│   │   ├── Services.tsx          # Service tiers
-│   │   ├── PriceCalculator.tsx   # Price estimation
-│   │   ├── FleetGallery.tsx      # Vehicle showcase
-│   │   ├── BusinessTravel.tsx    # Corporate services
-│   │   ├── Testimonials.tsx      # Customer reviews
-│   │   ├── Footer.tsx            # Site footer
-│   │   ├── FloatingContact.tsx   # Contact buttons
-│   │   ├── CookieConsent.tsx     # GDPR compliance
-│   │   └── LanguageSwitcher.tsx  # Language selection
-│   ├── context/
-│   │   └── LanguageContext.tsx   # Multilingual support
-│   ├── lib/
-│   │   ├── auth.ts               # NextAuth configuration
-│   │   └── prisma.ts             # Database client
-│   └── types/
-│       └── next-auth.d.ts        # TypeScript declarations
-├── prisma/
-│   └── schema.prisma             # Database schema
-├── public/                       # Static assets
+│   │   ├── api/
+│   │   │   └── booking/          # Email booking API
+│   │   ├── page.tsx              # Main landing page
+│   │   └── layout.tsx            # Root layout
+│   ├── components/               # React components
+│   │   ├── Hero.tsx             # Landing hero section
+│   │   ├── BookingForm.tsx      # Email booking form
+│   │   ├── Services.tsx         # Service tiers
+│   │   ├── PriceCalculator.tsx  # Price estimation
+│   │   ├── FleetGallery.tsx     # Vehicle showcase
+│   │   ├── BusinessTravel.tsx   # Corporate services
+│   │   ├── Testimonials.tsx     # Customer reviews
+│   │   ├── Footer.tsx           # Site footer
+│   │   ├── FloatingContact.tsx  # Contact buttons
+│   │   ├── CookieConsent.tsx    # GDPR compliance
+│   │   └── LanguageSwitcher.tsx # Language selection
+│   └── context/
+│       └── LanguageContext.tsx  # Multilingual support
+├── public/                      # Static assets
 └── package.json
 ```
 
-## 🔧 Configuration
+## 🔧 Email Configuration
 
-### Database Setup
-1. Create a PostgreSQL database
-2. Update `DATABASE_URL` in your environment variables
-3. Run `npx prisma db push` to create tables
+### Gmail Setup
+1. Enable 2-factor authentication on your Gmail account
+2. Generate an App Password for this application
+3. Use the App Password in your environment variables
 
-### Authentication
-- NextAuth.js handles user authentication
-- Supports customer and driver roles
-- Session-based authentication with JWT
-
-### Payment Processing
-- Stripe integration for secure payments
-- Supports multiple payment methods
-- Automatic payment confirmation
+### Email Templates
+The system sends two emails for each booking:
+1. **Admin Notification** - Detailed booking information sent to your admin email
+2. **Customer Confirmation** - Confirmation email sent to the customer
 
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
 1. Push your code to GitHub
 2. Connect your repository to Vercel
-3. Add environment variables in Vercel dashboard
+3. Add environment variables in Vercel dashboard:
+   - `EMAIL_USER`
+   - `EMAIL_PASS`
+   - `ADMIN_EMAIL`
 4. Deploy automatically
 
 ### Environment Variables for Production
 ```env
-DATABASE_URL="your-production-database-url"
-NEXTAUTH_URL="https://your-domain.com"
-NEXTAUTH_SECRET="your-production-secret"
-STRIPE_PUBLISHABLE_KEY="pk_live_..."
-STRIPE_SECRET_KEY="sk_live_..."
+EMAIL_USER="your-production-email@gmail.com"
+EMAIL_PASS="your-gmail-app-password"
+ADMIN_EMAIL="admin@yourdomain.com"
 ```
 
 ## 🔒 Security Features
 
-- **Authentication**: NextAuth.js with role-based access
-- **Database**: Prisma with type-safe queries
-- **Payments**: Stripe with PCI compliance
-- **HTTPS**: Automatic SSL certificates
-- **GDPR**: Cookie consent and data protection
+- **Email Validation** - Proper email format validation
+- **Form Validation** - Comprehensive input validation
+- **HTTPS** - Automatic SSL certificates
+- **GDPR** - Cookie consent and data protection
 
 ## 📱 Mobile Responsiveness
 
@@ -205,34 +154,26 @@ The taxi centrale is fully responsive and works seamlessly on:
 - **English** - International customers
 - **German** - German tourists and business clients
 
-## 🔄 Real-time Features
+## 📧 Email Workflow
 
-- Live booking updates
-- Driver availability status
-- Booking notifications
-- Payment confirmations
-- Chat system (coming soon)
-
-## 📊 Analytics & Reporting
-
-- Customer booking analytics
-- Driver performance metrics
-- Financial reporting
-- Revenue tracking
-- Customer satisfaction ratings
+1. **Customer fills booking form**
+2. **System validates all inputs**
+3. **Admin receives detailed booking email**
+4. **Customer receives confirmation email**
+5. **Admin can reply directly to customer**
 
 ## 🛠️ Customization
 
 ### Adding New Features
 1. Create new components in `src/components/`
 2. Add API routes in `src/app/api/`
-3. Update database schema if needed
+3. Update email templates in the booking API
 4. Add translations to language context
 
 ### Styling
 - Uses TailwindCSS for consistent design
 - Custom CSS classes in `globals.css`
-- Component-specific styling with CSS modules
+- Component-specific styling
 
 ## 🤝 Contributing
 
@@ -256,19 +197,18 @@ For support and questions:
 ## 🚀 Roadmap
 
 ### Phase 2 (Coming Soon)
-- [ ] Real-time GPS tracking
-- [ ] Push notifications
-- [ ] Mobile app for drivers
-- [ ] Advanced analytics dashboard
-- [ ] Integration with external APIs
-- [ ] Automated dispatch system
+- [ ] Google Maps integration for accurate pricing
+- [ ] SMS notifications
+- [ ] WhatsApp Business API integration
+- [ ] Advanced email templates
+- [ ] Booking management dashboard
 
 ### Phase 3 (Future)
-- [ ] AI-powered route optimization
-- [ ] Predictive demand forecasting
-- [ ] Advanced customer insights
-- [ ] Multi-location support
-- [ ] Franchise management system
+- [ ] Driver assignment system
+- [ ] Real-time tracking
+- [ ] Payment integration
+- [ ] Customer reviews system
+- [ ] Analytics dashboard
 
 ---
 
