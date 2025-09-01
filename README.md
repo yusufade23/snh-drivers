@@ -1,124 +1,275 @@
-# SNH Drivers - Premium Taxi Service Website
+# SNH Drivers - Taxi Centrale System
 
-A modern, sophisticated taxi booking website built with Next.js, TailwindCSS, and Framer Motion. This website offers a premium user experience for booking taxi services in Amsterdam, with multilingual support and interactive features.
+A comprehensive taxi dispatch center (taxi centrale) built with Next.js, featuring real-time booking management, driver dispatch, customer portals, and multilingual support. This system transforms your taxi service into a full-featured dispatch center similar to sneleentaxi.nl.
 
-![SNH Drivers Website](public/hero-bg.jpg)
+![SNH Drivers Taxi Centrale](public/hero-bg.jpg)
 
 ## Live Demo
 
-Visit the live website: [https://snh-drivers.vercel.app](https://snh-drivers.vercel.app)
+Visit the live taxi centrale: [https://snh-drivers.vercel.app](https://snh-drivers.vercel.app)
 
-## Features
+## 🚕 Taxi Centrale Features
 
-- 🌟 Modern and responsive design with dark theme
-- 🌐 Multilingual support (Dutch, English, German)
-- 📱 Mobile-friendly interface
-- 💰 Interactive price calculator
-- 🚕 Fleet gallery with vehicle details
-- 💼 Business travel section for corporate clients
-- ✈️ Airport transfer information
-- 📝 Online booking form with validation
-- 🍪 GDPR-compliant cookie consent
-- ✨ Smooth animations with Framer Motion
-- 📞 Multiple contact options (form, WhatsApp, phone)
+### For Customers
+- 🌐 **Multilingual Support** (Dutch, English, German)
+- 📱 **Real-time Booking System** with instant confirmation
+- 💰 **Interactive Price Calculator** with transparent pricing
+- 🚗 **Fleet Gallery** showcasing available vehicles
+- 📊 **Customer Dashboard** with booking history and account management
+- 💳 **Secure Payment Processing** with Stripe integration
+- 📍 **Real-time Ride Tracking** (coming soon)
+- 📞 **Multiple Contact Options** (form, WhatsApp, phone)
 
-## Prerequisites
+### For Drivers
+- 🎯 **Driver Dashboard** with earnings tracking
+- 📱 **Real-time Booking Notifications**
+- 🚦 **Availability Toggle** (online/offline status)
+- 💰 **Earnings Management** with detailed reports
+- 📍 **GPS Location Tracking** (coming soon)
+- 📊 **Performance Analytics** and ratings
 
-- Node.js 18+ and npm
+### For Administrators
+- 👥 **Driver Management** system
+- 🚗 **Fleet Management** with vehicle tracking
+- 💼 **Business Travel** coordination
+- 📈 **Financial Reports** and analytics
+- 🎛️ **Dispatch Control** center
+- 📱 **Real-time Monitoring** of all operations
 
-## Getting Started
+## 🏗️ System Architecture
 
-1. Clone the repository:
+### Frontend
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **TailwindCSS** - Utility-first styling
+- **Framer Motion** - Smooth animations
+- **NextAuth.js** - Authentication system
+
+### Backend
+- **Prisma** - Database ORM
+- **PostgreSQL** - Primary database
+- **Next.js API Routes** - Serverless backend
+- **Stripe** - Payment processing
+- **Socket.io** - Real-time communications
+
+### Database Schema
+```
+├── Users (Customers)
+├── Drivers
+├── Vehicles
+├── Bookings
+├── Payments
+├── DriverEarnings
+└── Messages
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- PostgreSQL database
+- Stripe account (for payments)
+
+### Installation
+
+1. **Clone the repository**
 ```bash
 git clone https://github.com/yusufade23/snh-drivers.git
 cd snh-drivers
 ```
 
-2. Install dependencies:
+2. **Install dependencies**
 ```bash
 npm install
 ```
 
-3. Run the development server:
+3. **Set up environment variables**
+```bash
+cp .env.example .env.local
+```
+Edit `.env.local` with your configuration:
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/snh_drivers"
+NEXTAUTH_SECRET="your-secret-key"
+STRIPE_PUBLISHABLE_KEY="pk_test_..."
+STRIPE_SECRET_KEY="sk_test_..."
+```
+
+4. **Set up the database**
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+5. **Run the development server**
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. **Open your browser**
+Visit [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 snh-drivers/
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx        # Main page component
-│   │   ├── layout.tsx      # Root layout with language provider
-│   │   └── globals.css     # Global styles
-│   ├── components/         # React components
-│   │   ├── Hero.tsx        # Hero section with call-to-action
-│   │   ├── BookingForm.tsx # Booking form with validation
-│   │   ├── Services.tsx    # Service tiers display
-│   │   ├── PriceCalculator.tsx # Interactive price estimator
-│   │   ├── FleetGallery.tsx # Vehicle showcase
-│   │   ├── BusinessTravel.tsx # Corporate services section
-│   │   ├── Testimonials.tsx # Client testimonials
-│   │   ├── Footer.tsx     # Site footer with contact info
-│   │   ├── FloatingContact.tsx # Floating contact buttons
-│   │   ├── CookieConsent.tsx # GDPR cookie consent banner
-│   │   └── LanguageSwitcher.tsx # Language selection component
-│   └── context/
-│       └── LanguageContext.tsx # Multilingual support system
-├── public/                 # Static assets
-│   └── fleet/              # Vehicle images
+│   │   ├── api/                    # API routes
+│   │   │   ├── auth/              # Authentication
+│   │   │   ├── bookings/          # Booking management
+│   │   │   └── driver/            # Driver operations
+│   │   ├── auth/                  # Authentication pages
+│   │   ├── dashboard/             # Customer dashboard
+│   │   ├── driver/                # Driver dashboard
+│   │   ├── page.tsx               # Main landing page
+│   │   └── layout.tsx             # Root layout
+│   ├── components/                # React components
+│   │   ├── Hero.tsx              # Landing hero section
+│   │   ├── BookingForm.tsx       # Booking form
+│   │   ├── Services.tsx          # Service tiers
+│   │   ├── PriceCalculator.tsx   # Price estimation
+│   │   ├── FleetGallery.tsx      # Vehicle showcase
+│   │   ├── BusinessTravel.tsx    # Corporate services
+│   │   ├── Testimonials.tsx      # Customer reviews
+│   │   ├── Footer.tsx            # Site footer
+│   │   ├── FloatingContact.tsx   # Contact buttons
+│   │   ├── CookieConsent.tsx     # GDPR compliance
+│   │   └── LanguageSwitcher.tsx  # Language selection
+│   ├── context/
+│   │   └── LanguageContext.tsx   # Multilingual support
+│   ├── lib/
+│   │   ├── auth.ts               # NextAuth configuration
+│   │   └── prisma.ts             # Database client
+│   └── types/
+│       └── next-auth.d.ts        # TypeScript declarations
+├── prisma/
+│   └── schema.prisma             # Database schema
+├── public/                       # Static assets
 └── package.json
 ```
 
-## Multilingual Support
+## 🔧 Configuration
 
-The website supports three languages:
-- 🇳🇱 Dutch (default)
-- 🇬🇧 English
-- 🇩🇪 German
+### Database Setup
+1. Create a PostgreSQL database
+2. Update `DATABASE_URL` in your environment variables
+3. Run `npx prisma db push` to create tables
 
-Language selection is persistent via localStorage and affects all text content throughout the site.
+### Authentication
+- NextAuth.js handles user authentication
+- Supports customer and driver roles
+- Session-based authentication with JWT
 
-## Deployment
+### Payment Processing
+- Stripe integration for secure payments
+- Supports multiple payment methods
+- Automatic payment confirmation
 
-This website is deployed on Vercel. To deploy your own version:
+## 🚀 Deployment
 
-1. Fork this repository
-2. Sign up on [Vercel](https://vercel.com)
-3. Create a new project and import your GitHub repository
-4. Vercel will automatically detect Next.js and configure the build settings
-5. Click "Deploy" and your site will be live in minutes
+### Vercel (Recommended)
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy automatically
 
-## Technologies Used
+### Environment Variables for Production
+```env
+DATABASE_URL="your-production-database-url"
+NEXTAUTH_URL="https://your-domain.com"
+NEXTAUTH_SECRET="your-production-secret"
+STRIPE_PUBLISHABLE_KEY="pk_live_..."
+STRIPE_SECRET_KEY="sk_live_..."
+```
 
-- [Next.js 15](https://nextjs.org/) - React framework
-- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [React Hook Form](https://react-hook-form.com/) - Form validation
-- [React Icons](https://react-icons.github.io/react-icons/) - Icon library
-- [date-fns](https://date-fns.org/) - Date utilities with localization
+## 🔒 Security Features
 
-## Customization
+- **Authentication**: NextAuth.js with role-based access
+- **Database**: Prisma with type-safe queries
+- **Payments**: Stripe with PCI compliance
+- **HTTPS**: Automatic SSL certificates
+- **GDPR**: Cookie consent and data protection
 
-To customize this website for your own taxi service:
+## 📱 Mobile Responsiveness
 
-1. Update contact information in `FloatingContact.tsx` and `Footer.tsx`
-2. Replace vehicle images in the `public/fleet/` directory
-3. Modify pricing in `PriceCalculator.tsx`
-4. Update service descriptions in `Services.tsx`
-5. Edit testimonials in `Testimonials.tsx`
-6. Customize the language translations in `LanguageContext.tsx`
+The taxi centrale is fully responsive and works seamlessly on:
+- 📱 Mobile phones
+- 📱 Tablets
+- 💻 Desktop computers
+- 🖥️ Large displays
 
-## License
+## 🌐 Multilingual Support
+
+- **Dutch** (default) - Primary market language
+- **English** - International customers
+- **German** - German tourists and business clients
+
+## 🔄 Real-time Features
+
+- Live booking updates
+- Driver availability status
+- Booking notifications
+- Payment confirmations
+- Chat system (coming soon)
+
+## 📊 Analytics & Reporting
+
+- Customer booking analytics
+- Driver performance metrics
+- Financial reporting
+- Revenue tracking
+- Customer satisfaction ratings
+
+## 🛠️ Customization
+
+### Adding New Features
+1. Create new components in `src/components/`
+2. Add API routes in `src/app/api/`
+3. Update database schema if needed
+4. Add translations to language context
+
+### Styling
+- Uses TailwindCSS for consistent design
+- Custom CSS classes in `globals.css`
+- Component-specific styling with CSS modules
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
 
 This project is licensed under the MIT License.
 
-## Acknowledgements
+## 🆘 Support
 
-- Design inspiration from premium transportation services
-- Vehicle images from Unsplash
-- Icons from React Icons and Heroicons
+For support and questions:
+- 📧 Email: support@snhdrivers.nl
+- 📞 Phone: +31 20 123 4567
+- 💬 WhatsApp: +31 6 12345678
+
+## 🚀 Roadmap
+
+### Phase 2 (Coming Soon)
+- [ ] Real-time GPS tracking
+- [ ] Push notifications
+- [ ] Mobile app for drivers
+- [ ] Advanced analytics dashboard
+- [ ] Integration with external APIs
+- [ ] Automated dispatch system
+
+### Phase 3 (Future)
+- [ ] AI-powered route optimization
+- [ ] Predictive demand forecasting
+- [ ] Advanced customer insights
+- [ ] Multi-location support
+- [ ] Franchise management system
+
+---
+
+**Built with ❤️ for the taxi industry**
