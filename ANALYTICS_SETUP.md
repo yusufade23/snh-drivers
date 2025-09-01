@@ -1,5 +1,14 @@
 # Analytics Setup Guide - WordPress Admin Equivalent
 
+## 🎯 **Your Current Deployment**
+
+### **Vercel Project URL:**
+- **Production URL:** `https://snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app`
+- **GitHub Repository:** `https://github.com/yusufade23/snh-drivers`
+- **Vercel Dashboard:** [vercel.com/dashboard](https://vercel.com/dashboard)
+
+---
+
 ## 🎯 **Recommended Solutions**
 
 ### **1. Vercel Analytics (Easiest - Already Installed)**
@@ -10,7 +19,7 @@
 
 **How to access:**
 1. Go to [vercel.com](https://vercel.com)
-2. Sign in to your account
+2. Sign in to your account (yusufadeyusuf@gmail.com)
 3. Select your "snh-drivers" project
 4. Click "Analytics" tab
 5. View real-time data, page views, and performance metrics
@@ -47,7 +56,7 @@ docker run -d --name plausible-analytics \
 **Integration:**
 ```html
 <!-- Add to your layout.tsx -->
-<script defer data-domain="snh-drivers.vercel.app" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app" src="https://plausible.io/js/script.js"></script>
 ```
 
 ---
@@ -147,14 +156,14 @@ docker run -d --name matomo \
 
 ### **Option 2: Plausible Analytics**
 1. Sign up at [plausible.io](https://plausible.io)
-2. Add your domain: `snh-drivers.vercel.app`
+2. Add your domain: `snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app`
 3. Get tracking code
 4. Add to your layout.tsx:
 
 ```tsx
 // In layout.tsx
 <head>
-  <script defer data-domain="snh-drivers.vercel.app" src="https://plausible.io/js/script.js"></script>
+  <script defer data-domain="snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app" src="https://plausible.io/js/script.js"></script>
 </head>
 ```
 
@@ -169,7 +178,7 @@ docker run -d --name matomo \
 ## 🎯 **Admin Access**
 
 ### **Current Admin Dashboard:**
-- URL: `https://snh-drivers.vercel.app/admin`
+- URL: `https://snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app/admin`
 - Hidden link: Bottom-left corner of your site (hover to see)
 
 ### **Vercel Analytics:**
@@ -201,8 +210,9 @@ This gives you the WordPress admin equivalent with:
 
 ## 🔗 **Quick Links**
 
+- **Your Live Site:** `https://snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app`
 - **Vercel Analytics:** [vercel.com/dashboard](https://vercel.com/dashboard)
 - **Plausible Analytics:** [plausible.io](https://plausible.io)
 - **Umami Analytics:** [github.com/umami-software/umami](https://github.com/umami-software/umami)
 - **Matomo Analytics:** [matomo.org](https://matomo.org)
-- **Your Admin Dashboard:** `https://snh-drivers.vercel.app/admin` 
+- **Your Admin Dashboard:** `https://snh-drivers-yusufadeyusuf-gmailcoms-projects.vercel.app/admin` 
